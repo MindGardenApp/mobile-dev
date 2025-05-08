@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Logo -->
+        <ImageView
+            android:id="@+id/login_logo"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="32dp"
+            android:src="@drawable/app_logo" />
+
+        <!-- Title -->
+        <TextView
+            android:id="@+id/login_or_reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Daftar atau Masuk"
+            android:textSize="36sp"
+            android:textStyle="bold"
+            android:textAlignment="center" />
+
+        <!-- Subtitle -->
+        <TextView
+            android:id="@+id/login_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Buat akun baru atau masuk \nmenggunakan akun yang sudah ada"
+            android:textAlignment="center"
+            android:textSize="16sp"
+            android:textColor="@color/font_gray_dark"/>
+
+        <!-- Tombol Login & Register -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@drawable/bg_swipe">
+
+            <Button
+                android:id="@+id/btn_login_page"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:text="Log In"
+                app:cornerRadius="16dp"
+                android:textColor="@color/font_gray_dark"
+                android:backgroundTint="@color/white" />
+
+            <Space
+                android:layout_width="16dp"
+                android:layout_height="0dp" />
+
+            <Button
+                android:id="@+id/btn_register_page"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="Sign Up"
+                android:backgroundTint="@color/green_light"
+                android:textColor="@color/gray_light"/>
+        </LinearLayout>
+
+        <!-- Email -->
+        <TextView
+            android:id="@+id/text_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Email"
+            android:textColor="@color/font_gray_dark"
+            android:textSize="14sp"/>
+
+        <EditText
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:background="@drawable/et_white_border"/>
+
+        <!-- Password -->
+        <TextView
+            android:id="@+id/password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Password"
+            android:textSize="14sp"
+            android:textColor="@color/font_gray_dark"/>
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="8dp"
+            android:padding="8dp"
+            android:background="@drawable/et_white_border"
+            android:inputType="textPassword" />
+
+        <TextView
+            android:id="@+id/tv_lupa_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="end"
+            android:text="Lupa Password?"
+            android:textSize="12sp"
+            android:textColor="@color/font_gray_light"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="2dp"
+            android:foreground="?attr/selectableItemBackground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/et_password" />
+
+
+        <Button
+            android:id="@+id/button_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="12dp"
+            android:layout_marginTop="16dp"
+            android:text="Log In"
+            app:cornerRadius="16dp"
+            android:backgroundTint="@color/green_primary"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="24dp"
+            >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#BBBBBB" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:text="atau masuk dengan"
+                android:textColor="@color/font_gray_dark"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                android:background="#BBBBBB" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_google"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="@drawable/btn_white_border"
+            android:src="@drawable/google"
+            android:contentDescription="Login dengan Google"
+            android:scaleType="centerInside"
+            android:padding="12dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            />
+
+    </LinearLayout>
+</ScrollView>
