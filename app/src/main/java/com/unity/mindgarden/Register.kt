@@ -2,6 +2,7 @@ package com.unity.mindgarden
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -11,9 +12,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
 
 class Register : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +25,7 @@ class Register : AppCompatActivity() {
         setContentView(R.layout.register_page)
 
         auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
 
         val etName = findViewById<EditText>(R.id.et_name)
         val etEmail = findViewById<EditText>(R.id.et_email)
@@ -63,6 +68,28 @@ class Register : AppCompatActivity() {
                             .setDisplayName(name)
                             .build()
                         user?.updateProfile(profileUpdates)
+
+                        val uid = auth.currentUser?.uid
+                        uid?.let { it ->
+                            val userData = hashMapOf(
+                                "uid" to it,
+                                "name" to name,
+                                "email" to email,
+                                "soul_garden" to mapOf(
+                                    "totalScore" to 0,
+                                    "updatedAt" to FieldValue.serverTimestamp()
+                                )
+                            )
+
+                            firestore.collection("users").document(it)
+                                .set(userData)
+                                .addOnSuccessListener {
+                                    Log.d("Register", "User + scoring saved.")
+                                }
+                                .addOnFailureListener {
+                                    Log.e("Register", "Failed to save user: ${it.message}")
+                                }
+                        }
 
                         Toast.makeText(this, "Registrasi berhasil!", Toast.LENGTH_SHORT).show()
                         startActivity(Intent(this, Login::class.java))
