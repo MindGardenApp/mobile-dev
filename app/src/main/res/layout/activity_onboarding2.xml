@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/onboarding1"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".onboarding1">
+    tools:context=".onboarding2">
 
     <ImageView
         android:id="@+id/hape1"
@@ -17,7 +17,7 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.495" />
+        app:layout_constraintVertical_bias="0.46" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -38,7 +38,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:lineSpacingExtra="-7sp"
-        android:text="Tulis Perasaanmu,\nRawat dirimu"
+        android:text="Lihat Perjalanan \nEmosimu Hari ke Hari "
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
@@ -54,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:gravity="center"
-        android:text="MindGarden hadir sebagai teman \ncurhat digital yang siap mendengarkan \ntanpa menghakimi."
+        android:text="Kenali pola emosimu dan temukan \nhari-hari terbaik untuk bertumbuh."
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@+id/teksjudul"
         app:layout_constraintStart_toStartOf="parent"

@@ -8,24 +8,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class onboarding1 : AppCompatActivity() {
+class onboarding3 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_onboarding1)
+        setContentView(R.layout.activity_onboarding3)
 
-        val btnNext = findViewById<Button>(R.id.nextButton)
-        val btnSkip = findViewById<Button>(R.id.skipButton)
+        val btnGetStarted = findViewById<Button>(R.id.getStartedButton)
 
-        btnNext.setOnClickListener {
-            val intent = Intent(this, onboarding2::class.java)
-            startActivity(intent)
-        }
-
-        btnSkip.setOnClickListener {
+        btnGetStarted.setOnClickListener {
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
-            finish() // agar tidak bisa kembali ke onboarding
         }
     }
 }
