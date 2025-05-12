@@ -11,7 +11,7 @@
         android:id="@+id/iv_welcome_banner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/welcome_banner"
+        android:src="@drawable/banner_welcome"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/iv_background"
         app:layout_constraintStart_toStartOf="parent"
