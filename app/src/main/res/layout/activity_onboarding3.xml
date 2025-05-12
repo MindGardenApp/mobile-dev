@@ -9,15 +9,16 @@
 
     <ImageView
         android:id="@+id/hape1"
-        android:layout_width="290dp"
+        android:layout_width="310dp"
         android:layout_height="612dp"
-        android:src="@drawable/hape"
+        android:src="@drawable/phone3"
+        android:layout_marginTop="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.46" />
+        app:layout_constraintVertical_bias="0.016" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -30,23 +31,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/onbording1" />
+        app:srcCompat="@drawable/bg_onboarding3" />
 
     <TextView
         android:id="@+id/teksjudul"
-        android:layout_width="0dp"
+        android:layout_width="411dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="232dp"
         android:gravity="center"
         android:lineSpacingExtra="-7sp"
         android:text="Analisis Cerdas untuk \nKesehatan Mental yang \nLebih Baik"
         android:textSize="25sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hape1"
-        app:layout_constraintVertical_bias="0.641" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tekssub"
@@ -64,7 +64,7 @@
         android:id="@+id/getStartedButton"
         android:layout_width="300dp"
         android:layout_height="51dp"
-        android:layout_marginTop="92dp"
+        android:layout_marginTop="72dp"
         android:backgroundTint="@color/green_primary"
         android:text="Get Started"
         android:textColor="@color/white"
