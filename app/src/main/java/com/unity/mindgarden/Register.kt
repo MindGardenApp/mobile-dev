@@ -92,11 +92,11 @@ class Register : AppCompatActivity() {
                         }
 
                         Toast.makeText(this, "Registrasi berhasil!", Toast.LENGTH_SHORT).show()
-                        startActivity(Intent(this, Login::class.java))
+                        startActivity(Intent(this, WelcomeActivity::class.java))
                         finish()
                     } else {
-                        Toast.makeText(this, "Gagal: ${task.exception?.message}", Toast.LENGTH_LONG)
-                            .show()
+                        startActivity(Intent(this, FailActivity::class.java))
+                        finish()
                     }
                 }
         }
