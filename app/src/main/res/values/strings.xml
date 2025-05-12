@@ -5,4 +5,8 @@
     <string name="welcome_desc">Tempat di mana setiap perasaanmu \n didengar, setiap tulisanmu berarti, dan \n setiap hari adalah kesempatan untuk \n bertumbuh.</string>
     <string name="cont">Continue</string>
     <string name="welcome_banner_desc">welcome banner</string>
+    <string name="fail_title">Hmm, Sepertinya \n Belum Berhasil Masuk</string>
+    <string name="fail_desc">Kami tidak bisa mengakses akunmu \n saat ini. Pastikan kredensialmu benar, \n atau login dengan Google jika lebih \n mudah.</string>
+    <string name="fail_banner_desc">fail banner</string>
+    <string name="back">Back</string>
 </resources>

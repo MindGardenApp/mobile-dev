@@ -9,4 +9,6 @@
     <color name="gray_light">#7D7D91</color>
     <color name="font_gray_dark">#6C7278</color>
     <color name="font_gray_light">#8080808C</color>
+    <color name="yellowish_100">#EDECD8</color>
+    <color name="yellowish_900">#574430</color>
 </resources>
