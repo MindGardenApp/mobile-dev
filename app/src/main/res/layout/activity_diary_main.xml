@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="52dp"
         android:background="@android:color/transparent"
         android:contentDescription="Back"
         android:src="@drawable/back_button"
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="32dp"
         android:text="Judul Diary"
         android:textSize="16sp"
         android:textStyle="bold"
@@ -78,6 +78,7 @@
             android:paddingVertical="16dp">
 
             <EditText
+                android:id="@+id/editText_JudulDiary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -108,7 +109,7 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/editText_Content_Diary"
         android:layout_width="match_parent"
         android:layout_height="440dp"
         android:layout_marginHorizontal="16dp"
@@ -135,7 +136,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/editText_Content_Diary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
