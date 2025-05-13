@@ -4,12 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.unity.mindgarden.R
+import com.unity.mindgarden.main_feature.MainActivity
 import java.util.*
 
 class DiaryMain : AppCompatActivity() {
@@ -19,6 +21,7 @@ class DiaryMain : AppCompatActivity() {
     private lateinit var etContentDiary: EditText
     private lateinit var btnSubmit: Button
     private lateinit var btnReset: Button
+    private lateinit var imageButton: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +34,7 @@ class DiaryMain : AppCompatActivity() {
         etContentDiary = findViewById(R.id.editText_Content_Diary)
         btnSubmit = findViewById(R.id.doneButton)
         btnReset = findViewById(R.id.resetButton)
+        imageButton = findViewById(R.id.imageButton)
 
         btnSubmit.setOnClickListener {
             val currentUser = FirebaseAuth.getInstance().currentUser
@@ -77,6 +81,10 @@ class DiaryMain : AppCompatActivity() {
         btnReset.setOnClickListener {
             etJudulDiary.text.clear()
             etContentDiary.text.clear()
+        }
+        imageButton.setOnClickListener {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
         }
     }
 }

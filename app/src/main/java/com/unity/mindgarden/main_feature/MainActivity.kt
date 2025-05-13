@@ -1,5 +1,6 @@
 package com.unity.mindgarden.main_feature
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -9,7 +10,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.unity.mindgarden.HistoryFragment
 import com.unity.mindgarden.R
-import com.unity.mindgarden.diary.DiaryFragment
+import com.unity.mindgarden.diary.DiaryWelcome
 
 class MainActivity : AppCompatActivity() {
 
@@ -50,6 +51,8 @@ class MainActivity : AppCompatActivity() {
         settingsIndicator = findViewById(R.id.settings_menu_indicator)
         profileIndicator = findViewById(R.id.profile_menu_indicator)
 
+        homeIndicator.visibility = ImageView.VISIBLE
+
         homeButton.setOnClickListener {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, HomeFragment())
@@ -67,10 +70,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         diaryButton.setOnClickListener {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, DiaryFragment())
-                .commit()
             clearIndicators()
+            startActivity(Intent(this, DiaryWelcome::class.java))
+            finish()
         }
 
         settingsButton.setOnClickListener {

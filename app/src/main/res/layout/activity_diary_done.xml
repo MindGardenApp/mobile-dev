@@ -61,7 +61,7 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
-        android:id="@+id/getStartedButton"
+        android:id="@+id/btn_continue"
         android:layout_width="300dp"
         android:layout_height="51dp"
         android:layout_marginTop="72dp"
