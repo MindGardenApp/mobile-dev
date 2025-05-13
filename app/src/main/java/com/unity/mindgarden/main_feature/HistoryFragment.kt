@@ -1,4 +1,4 @@
-package com.unity.mindgarden
+package com.unity.mindgarden.main_feature
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,12 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.unity.mindgarden.DailyHistory
+import com.unity.mindgarden.DailyHistoryAdapter
+import com.unity.mindgarden.R
 import java.util.Date
 
-class HistoryFragment: Fragment() {
+class HistoryFragment : Fragment() {
 
-    private lateinit var weeklyRecyclerView: RecyclerView
-    private lateinit var weeklyHistoryAdapter: WeeklyHistoryAdapter
+    private lateinit var historyRecyclerView: RecyclerView
+    private lateinit var historyAdapter: DailyHistoryAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,24 +28,19 @@ class HistoryFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        weeklyRecyclerView = view.findViewById(R.id.recycler_weekly_history)
-        weeklyRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        historyRecyclerView = view.findViewById(R.id.recycler_history)
+        historyRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val data = listOf(
-            WeeklyHistory(
-                dateStart = Date(2025, 5, 1),
-                items = listOf(
-                    DailyHistory(
-                        dateTime = Date(2025, 5, 1),
-                        title = "Day 1",
-                        diary = "lorem ipsum",
-                        label = "joy"
-                    )
-                )
+            DailyHistory(
+                dateTime = Date(2025, 5, 1),
+                title = "Day 1",
+                diary = "lorem ipsum",
+                label = "joy"
             )
         )
 
-        weeklyHistoryAdapter = WeeklyHistoryAdapter(data)
-        weeklyRecyclerView.adapter = weeklyHistoryAdapter
+        historyAdapter = DailyHistoryAdapter(data)
+        historyRecyclerView.adapter = historyAdapter
     }
 }

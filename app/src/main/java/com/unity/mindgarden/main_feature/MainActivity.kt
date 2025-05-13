@@ -8,7 +8,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.unity.mindgarden.HistoryFragment
 import com.unity.mindgarden.R
 import com.unity.mindgarden.diary.DiaryWelcome
 
