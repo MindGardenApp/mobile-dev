@@ -19,4 +19,25 @@
     <string name="ic_settings_desc">settings icon</string>
     <string name="ic_profile_desc">profile icon</string>
     <string name="menu_indicator_desc">menu indicator</string>
+    <string name="summary_desc">Ringkasan suasana hatimu minggu ini</string>
+    <string name="summary_title">Mood Summary</string>
+    <string name="streak_title">Diary Streak!</string>
+    <string name="sun">Sun</string>
+    <string name="date_placeholder">0</string>
+    <string name="sunday_check_desc">sunday check</string>
+    <string name="mon">Mon</string>
+    <string name="monday_check_desc">monday check</string>
+    <string name="tue">Tue</string>
+    <string name="tuesday_check">tuesday check</string>
+    <string name="wed">Wed</string>
+    <string name="wednesday_check_desc">wednesday check</string>
+    <string name="thu">Thu</string>
+    <string name="thursday_check_desc">thursday check</string>
+    <string name="fri">Fri</string>
+    <string name="friday_check_desc">friday check</string>
+    <string name="sat">Sat</string>
+    <string name="saturday_check_desc">saturday check</string>
+    <string name="hallo_placeholder">Hallo, User!</string>
+    <string name="header_greeting">Selamat datang kembali di MindGarden!</string>
+    <string name="soul_garden_placeholder">soul garden</string>
 </resources>
