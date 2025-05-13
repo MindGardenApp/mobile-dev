@@ -11,6 +11,8 @@
     <color name="font_gray_light">#8080808C</color>
     <color name="primary_400">#709778</color>
     <color name="primary_700">#304C38</color>
+    <color name="yellowish_50">#F9F8F1</color>
     <color name="yellowish_100">#EDECD8</color>
+    <color name="yellowish_400">#B7AE68</color>
     <color name="yellowish_900">#574430</color>
 </resources>

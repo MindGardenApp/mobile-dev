@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DiaryResult">
+    tools:context=".DiaryView">
 
     <ImageView
         android:id="@+id/imageView"
@@ -20,9 +20,9 @@
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="280dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/background_bottom_sad"
+        android:src="@drawable/background_bottom_surprised"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -31,19 +31,31 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginTop="24dp"
-        android:src="@drawable/emoticon_sadness"
+        android:src="@drawable/emoticon_surprise"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_rounded_outline_yellowish"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="4dp"
+        android:text="May 5,2025"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <TextView
         android:id="@+id/result_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="52dp"
         android:gravity="center"
-        android:text="Kamu Sedang \nSedih Hari Ini!"
+        android:text="Kamu Sedang \nTerkejut Hari Ini!"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,7 +67,7 @@
         android:id="@+id/imageView4"
         android:layout_width="360dp"
         android:layout_height="160dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/background_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.515"
@@ -98,7 +110,7 @@
     <TextView
         android:layout_width="309dp"
         android:layout_height="78dp"
-        android:text="Kamu sedang merasakan kesedihan yang dalam, dan itu wajar. MindGarden memahami bahwa tak semua hari penuh warna. Menuliskan perasaan ini adalah bentuk keberanian. Dengan mengenali kesedihan, kamu sedang merawat luka yang tak terlihat. 🌧️"
+        android:text="Ada ketidaksangkaan dalam ceritamu—kejadian yang datang tiba-tiba dan tak terduga. Baik menyenangkan maupun membingungkan, kejutan sering membawa perspektif baru. 🌠"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
         app:layout_constraintHorizontal_bias="0.568"
@@ -109,27 +121,22 @@
         android:id="@+id/textView3"
         android:layout_width="309dp"
         android:layout_height="78dp"
-        android:text="Berikan dirimu waktu tanpa tuntutan. Dengarkan musik yang menenangkan, tarik napas perlahan. Biarkan air mata jatuh jika perlu — itu bagian dari proses penyembuhan. 💧"
+        android:text="Respon pertama mungkin adalah bingung atau heran, tapi cobalah melihatnya dengan rasa ingin tahu. Apa yang bisa kamu pelajari? Apa yang berubah dalam dirimu setelahnya? 🌟"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="@+id/imageView4"
         app:layout_constraintHorizontal_bias="0.568"
         app:layout_constraintStart_toStartOf="@+id/imageView4"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
-    <Button
-        android:id="@+id/goHomeButton"
-        android:layout_width="360dp"
-        android:layout_height="51dp"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="@color/green_dark"
-        android:text="Home"
-        android:textColor="@color/white"
-        app:cornerRadius="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Back"
+        android:src="@drawable/back_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
-        app:strokeColor="@color/green_primary"
-        app:strokeWidth="1dp" />
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
