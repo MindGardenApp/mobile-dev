@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -43,9 +42,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/soul_garden_placeholder"
-            android:src="@drawable/tree_full_grown_healthy"
             android:scaleX="0.8"
             android:scaleY="0.8"
+            android:src="@drawable/tree_sprout_healthy"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,487 +52,571 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/bottom_section"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/third_200"
+        android:clipToPadding="false"
         android:orientation="vertical"
+        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <!--        <LinearLayout-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:baselineAligned="false"-->
+        <!--            android:clipToPadding="false"-->
+        <!--            android:elevation="2dp"-->
+        <!--            android:orientation="horizontal"-->
+        <!--            android:layout_marginBottom="8dp">-->
+
+        <LinearLayout
+            android:id="@+id/ll_stage"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="1"
             android:background="@drawable/shape_rounded"
             android:backgroundTint="@color/yellowish_50"
-            android:clipToPadding="false"
-            android:elevation="2dp"
-            android:paddingHorizontal="4dp"
-            android:paddingVertical="8dp">
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/cl_words"
+            app:layout_constraintEnd_toStartOf="@id/ll_status"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/tv_streak_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/streak_title"
+                android:text="stage"
+                android:textColor="@color/primary_400"
+                android:textSize="@dimen/body" />
+
+            <TextView
+                android:id="@+id/tv_stage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Benih"
                 android:textColor="@color/primary_700"
-                android:textSize="@dimen/large"
-                android:textStyle="bold"
-                app:layout_constraintBaseline_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="@dimen/heading_h2"
+                android:textStyle="bold" />
 
-            <RelativeLayout
-                android:id="@+id/streak_sun"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_streak_title"
-                app:layout_constraintEnd_toStartOf="@id/streak_mon">
+        </LinearLayout>
 
-                <View
-                    android:id="@+id/placeholder_streak_sun"
-                    android:layout_width="match_parent"
-                    android:layout_height="12dp" />
-
-                <LinearLayout
-                    android:id="@+id/ll_streak_sun"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_rounded_outlined"
-                    android:clipToPadding="false"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingVertical="8dp"
-                    android:layout_below="@id/placeholder_streak_sun">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sun"
-                        android:textColor="@color/primary_700"
-                        android:textSize="@dimen/body"
-                        android:textStyle="normal" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date_placeholder"
-                        android:textColor="@color/primary_700"
-                        android:textSize="@dimen/body"
-                        android:textStyle="normal" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/iv_streak_sun_check"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:contentDescription="@string/sunday_check_desc"
-                    android:src="@drawable/ic_check"
-                    android:layout_centerHorizontal="true"
-                    android:layout_above="@id/ll_streak_sun"
-                    android:layout_marginBottom="-12dp"
-                    android:visibility="invisible"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/streak_mon"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_weight="1"
-                app:layout_constraintStart_toEndOf="@+id/streak_sun"
-                app:layout_constraintTop_toBottomOf="@+id/tv_streak_title"
-                app:layout_constraintEnd_toStartOf="@id/streak_tue">
-
-                <View
-                    android:id="@+id/placeholder_streak_mon"
-                    android:layout_width="match_parent"
-                    android:layout_height="12dp" />
-
-                <LinearLayout
-                    android:id="@+id/ll_streak_mon"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_rounded_outlined"
-                    android:clipToPadding="false"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingVertical="8dp"
-                    android:layout_below="@id/placeholder_streak_mon">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/mon"
-                        android:textColor="@color/primary_700"
-                        android:textSize="@dimen/body"
-                        android:textStyle="normal" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date_placeholder"
-                        android:textColor="@color/primary_700"
-                        android:textSize="@dimen/body"
-                        android:textStyle="normal" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/iv_streak_mon_check"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:contentDescription="@string/monday_check_desc"
-                    android:src="@drawable/ic_check"
-                    android:layout_centerHorizontal="true"
-                    android:layout_above="@id/ll_streak_mon"
-                    android:layout_marginBottom="-12dp"
-                    android:visibility="invisible"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/streak_tue"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_weight="1"
-                app:layout_constraintStart_toEndOf="@+id/streak_mon"
-                app:layout_constraintTop_toBottomOf="@+id/tv_streak_title"
-                app:layout_constraintEnd_toStartOf="@id/streak_wed">
-
-                <View
-                    android:id="@+id/placeholder_streak_tue"
-                    android:layout_width="match_parent"
-                    android:layout_height="12dp" />
-
-                <LinearLayout
-                    android:id="@+id/ll_streak_tue"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_rounded_outlined"
-                    android:clipToPadding="false"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingVertical="8dp"
-                    android:layout_below="@id/placeholder_streak_tue">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/tue"
-                        android:textColor="@color/primary_700"
-                        android:textSize="@dimen/body"
-                        android:textStyle="normal" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date_placeholder"
-                        android:textColor="@color/primary_700"
-                        android:textSize="@dimen/body"
-                        android:textStyle="normal" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/iv_streak_tue_check"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:contentDescription="@string/tuesday_check"
-                    android:src="@drawable/ic_check"
-                    android:layout_centerHorizontal="true"
-                    android:layout_above="@id/ll_streak_tue"
-                    android:layout_marginBottom="-12dp"
-                    android:visibility="invisible"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/streak_wed"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_weight="1"
-                app:layout_constraintStart_toEndOf="@+id/streak_tue"
-                app:layout_constraintTop_toBottomOf="@+id/tv_streak_title"
-                app:layout_constraintEnd_toStartOf="@id/streak_thu">
-
-                <View
-                    android:id="@+id/placeholder_streak_wed"
-                    android:layout_width="match_parent"
-                    android:layout_height="12dp" />
-
-                <LinearLayout
-                    android:id="@+id/ll_streak_wed"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_rounded_outlined"
-                    android:clipToPadding="false"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingVertical="8dp"
-                    android:layout_below="@id/placeholder_streak_wed">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/wed"
-                        android:textColor="@color/primary_700"
-                        android:textSize="@dimen/body"
-                        android:textStyle="normal" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date_placeholder"
-                        android:textColor="@color/primary_700"
-                        android:textSize="@dimen/body"
-                        android:textStyle="normal" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/iv_streak_wed_check"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:contentDescription="@string/wednesday_check_desc"
-                    android:src="@drawable/ic_check"
-                    android:layout_centerHorizontal="true"
-                    android:layout_above="@id/ll_streak_wed"
-                    android:layout_marginBottom="-12dp"
-                    android:visibility="invisible"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/streak_thu"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_weight="1"
-                app:layout_constraintStart_toEndOf="@+id/streak_wed"
-                app:layout_constraintTop_toBottomOf="@+id/tv_streak_title"
-                app:layout_constraintEnd_toStartOf="@id/streak_fri">
-
-                <View
-                    android:id="@+id/placeholder_streak_thu"
-                    android:layout_width="match_parent"
-                    android:layout_height="12dp" />
-
-                <LinearLayout
-                    android:id="@+id/ll_streak_thu"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_rounded_outlined"
-                    android:clipToPadding="false"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingVertical="8dp"
-                    android:layout_below="@id/placeholder_streak_thu">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/thu"
-                        android:textColor="@color/primary_700"
-                        android:textSize="@dimen/body"
-                        android:textStyle="normal" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date_placeholder"
-                        android:textColor="@color/primary_700"
-                        android:textSize="@dimen/body"
-                        android:textStyle="normal" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/iv_streak_thu_check"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:contentDescription="@string/thursday_check_desc"
-                    android:src="@drawable/ic_check"
-                    android:layout_centerHorizontal="true"
-                    android:layout_above="@id/ll_streak_thu"
-                    android:layout_marginBottom="-12dp"
-                    android:visibility="invisible"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/streak_fri"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_weight="1"
-                app:layout_constraintStart_toEndOf="@+id/streak_thu"
-                app:layout_constraintTop_toBottomOf="@+id/tv_streak_title"
-                app:layout_constraintEnd_toStartOf="@id/streak_sat">
-
-                <View
-                    android:id="@+id/placeholder_streak_fri"
-                    android:layout_width="match_parent"
-                    android:layout_height="12dp" />
-
-                <LinearLayout
-                    android:id="@+id/ll_streak_fri"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_rounded_outlined"
-                    android:clipToPadding="false"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingVertical="8dp"
-                    android:layout_below="@id/placeholder_streak_fri">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/fri"
-                        android:textColor="@color/primary_700"
-                        android:textSize="@dimen/body"
-                        android:textStyle="normal" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date_placeholder"
-                        android:textColor="@color/primary_700"
-                        android:textSize="@dimen/body"
-                        android:textStyle="normal" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/iv_streak_fri_check"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:contentDescription="@string/friday_check_desc"
-                    android:src="@drawable/ic_check"
-                    android:layout_centerHorizontal="true"
-                    android:layout_above="@id/ll_streak_fri"
-                    android:layout_marginBottom="-12dp"
-                    android:visibility="invisible"/>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/streak_sat"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_weight="1"
-                app:layout_constraintStart_toEndOf="@id/streak_fri"
-                app:layout_constraintTop_toBottomOf="@+id/tv_streak_title"
-                app:layout_constraintEnd_toEndOf="parent">
-
-                <View
-                    android:id="@+id/placeholder_streak_sat"
-                    android:layout_width="match_parent"
-                    android:layout_height="12dp" />
-
-                <LinearLayout
-                    android:id="@+id/ll_streak_sat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/shape_rounded_outlined"
-                    android:clipToPadding="false"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingVertical="8dp"
-                    android:layout_below="@id/placeholder_streak_sat">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/sat"
-                        android:textColor="@color/primary_700"
-                        android:textSize="@dimen/body"
-                        android:textStyle="normal" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/date_placeholder"
-                        android:textColor="@color/primary_700"
-                        android:textSize="@dimen/body"
-                        android:textStyle="normal" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/iv_streak_sat_check"
-                    android:layout_width="wrap_content"
-                    android:layout_height="24dp"
-                    android:contentDescription="@string/saturday_check_desc"
-                    android:src="@drawable/ic_check"
-                    android:layout_centerHorizontal="true"
-                    android:layout_above="@id/ll_streak_sat"
-                    android:layout_marginBottom="-12dp"
-                    android:visibility="invisible"/>
-
-            </RelativeLayout>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:id="@+id/ll_status"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginBottom="9dp"
+            android:layout_weight="1"
             android:background="@drawable/shape_rounded"
             android:backgroundTint="@color/yellowish_50"
-            android:elevation="2dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="8dp"
+            app:layout_constraintBottom_toTopOf="@id/cl_words"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/ll_stage"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="status"
+                android:textColor="@color/primary_400"
+                android:textSize="@dimen/body" />
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Subur"
+                android:textColor="@color/primary_700"
+                android:textSize="@dimen/heading_h2"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <!--            <TextView-->
+        <!--                android:id="@+id/tv_streak_title"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:text="@string/streak_title"-->
+        <!--                android:textColor="@color/primary_700"-->
+        <!--                android:textSize="@dimen/large"-->
+        <!--                android:textStyle="bold"-->
+        <!--                app:layout_constraintBaseline_toTopOf="parent"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+        <!--            <RelativeLayout-->
+        <!--                android:id="@+id/streak_sun"-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_weight="1"-->
+        <!--                app:layout_constraintStart_toStartOf="parent"-->
+        <!--                app:layout_constraintTop_toBottomOf="@id/tv_streak_title"-->
+        <!--                app:layout_constraintEnd_toStartOf="@id/streak_mon">-->
+
+        <!--                <View-->
+        <!--                    android:id="@+id/placeholder_streak_sun"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="12dp" />-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/ll_streak_sun"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:background="@drawable/shape_rounded_outlined"-->
+        <!--                    android:clipToPadding="false"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:orientation="vertical"-->
+        <!--                    android:paddingVertical="8dp"-->
+        <!--                    android:layout_below="@id/placeholder_streak_sun">-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="@string/sun"-->
+        <!--                        android:textColor="@color/primary_700"-->
+        <!--                        android:textSize="@dimen/body"-->
+        <!--                        android:textStyle="normal" />-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="@string/date_placeholder"-->
+        <!--                        android:textColor="@color/primary_700"-->
+        <!--                        android:textSize="@dimen/body"-->
+        <!--                        android:textStyle="normal" />-->
+
+        <!--                </LinearLayout>-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/iv_streak_sun_check"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="24dp"-->
+        <!--                    android:contentDescription="@string/sunday_check_desc"-->
+        <!--                    android:src="@drawable/ic_check"-->
+        <!--                    android:layout_centerHorizontal="true"-->
+        <!--                    android:layout_above="@id/ll_streak_sun"-->
+        <!--                    android:layout_marginBottom="-12dp"-->
+        <!--                    android:visibility="invisible"/>-->
+
+        <!--            </RelativeLayout>-->
+
+        <!--            <RelativeLayout-->
+        <!--                android:id="@+id/streak_mon"-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="4dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                app:layout_constraintStart_toEndOf="@+id/streak_sun"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/tv_streak_title"-->
+        <!--                app:layout_constraintEnd_toStartOf="@id/streak_tue">-->
+
+        <!--                <View-->
+        <!--                    android:id="@+id/placeholder_streak_mon"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="12dp" />-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/ll_streak_mon"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:background="@drawable/shape_rounded_outlined"-->
+        <!--                    android:clipToPadding="false"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:orientation="vertical"-->
+        <!--                    android:paddingVertical="8dp"-->
+        <!--                    android:layout_below="@id/placeholder_streak_mon">-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="@string/mon"-->
+        <!--                        android:textColor="@color/primary_700"-->
+        <!--                        android:textSize="@dimen/body"-->
+        <!--                        android:textStyle="normal" />-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="@string/date_placeholder"-->
+        <!--                        android:textColor="@color/primary_700"-->
+        <!--                        android:textSize="@dimen/body"-->
+        <!--                        android:textStyle="normal" />-->
+
+        <!--                </LinearLayout>-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/iv_streak_mon_check"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="24dp"-->
+        <!--                    android:contentDescription="@string/monday_check_desc"-->
+        <!--                    android:src="@drawable/ic_check"-->
+        <!--                    android:layout_centerHorizontal="true"-->
+        <!--                    android:layout_above="@id/ll_streak_mon"-->
+        <!--                    android:layout_marginBottom="-12dp"-->
+        <!--                    android:visibility="invisible"/>-->
+
+        <!--            </RelativeLayout>-->
+
+        <!--            <RelativeLayout-->
+        <!--                android:id="@+id/streak_tue"-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="4dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                app:layout_constraintStart_toEndOf="@+id/streak_mon"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/tv_streak_title"-->
+        <!--                app:layout_constraintEnd_toStartOf="@id/streak_wed">-->
+
+        <!--                <View-->
+        <!--                    android:id="@+id/placeholder_streak_tue"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="12dp" />-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/ll_streak_tue"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:background="@drawable/shape_rounded_outlined"-->
+        <!--                    android:clipToPadding="false"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:orientation="vertical"-->
+        <!--                    android:paddingVertical="8dp"-->
+        <!--                    android:layout_below="@id/placeholder_streak_tue">-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="@string/tue"-->
+        <!--                        android:textColor="@color/primary_700"-->
+        <!--                        android:textSize="@dimen/body"-->
+        <!--                        android:textStyle="normal" />-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="@string/date_placeholder"-->
+        <!--                        android:textColor="@color/primary_700"-->
+        <!--                        android:textSize="@dimen/body"-->
+        <!--                        android:textStyle="normal" />-->
+
+        <!--                </LinearLayout>-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/iv_streak_tue_check"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="24dp"-->
+        <!--                    android:contentDescription="@string/tuesday_check"-->
+        <!--                    android:src="@drawable/ic_check"-->
+        <!--                    android:layout_centerHorizontal="true"-->
+        <!--                    android:layout_above="@id/ll_streak_tue"-->
+        <!--                    android:layout_marginBottom="-12dp"-->
+        <!--                    android:visibility="invisible"/>-->
+
+        <!--            </RelativeLayout>-->
+
+        <!--            <RelativeLayout-->
+        <!--                android:id="@+id/streak_wed"-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="4dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                app:layout_constraintStart_toEndOf="@+id/streak_tue"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/tv_streak_title"-->
+        <!--                app:layout_constraintEnd_toStartOf="@id/streak_thu">-->
+
+        <!--                <View-->
+        <!--                    android:id="@+id/placeholder_streak_wed"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="12dp" />-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/ll_streak_wed"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:background="@drawable/shape_rounded_outlined"-->
+        <!--                    android:clipToPadding="false"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:orientation="vertical"-->
+        <!--                    android:paddingVertical="8dp"-->
+        <!--                    android:layout_below="@id/placeholder_streak_wed">-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="@string/wed"-->
+        <!--                        android:textColor="@color/primary_700"-->
+        <!--                        android:textSize="@dimen/body"-->
+        <!--                        android:textStyle="normal" />-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="@string/date_placeholder"-->
+        <!--                        android:textColor="@color/primary_700"-->
+        <!--                        android:textSize="@dimen/body"-->
+        <!--                        android:textStyle="normal" />-->
+
+        <!--                </LinearLayout>-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/iv_streak_wed_check"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="24dp"-->
+        <!--                    android:contentDescription="@string/wednesday_check_desc"-->
+        <!--                    android:src="@drawable/ic_check"-->
+        <!--                    android:layout_centerHorizontal="true"-->
+        <!--                    android:layout_above="@id/ll_streak_wed"-->
+        <!--                    android:layout_marginBottom="-12dp"-->
+        <!--                    android:visibility="invisible"/>-->
+
+        <!--            </RelativeLayout>-->
+
+        <!--            <RelativeLayout-->
+        <!--                android:id="@+id/streak_thu"-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="4dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                app:layout_constraintStart_toEndOf="@+id/streak_wed"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/tv_streak_title"-->
+        <!--                app:layout_constraintEnd_toStartOf="@id/streak_fri">-->
+
+        <!--                <View-->
+        <!--                    android:id="@+id/placeholder_streak_thu"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="12dp" />-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/ll_streak_thu"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:background="@drawable/shape_rounded_outlined"-->
+        <!--                    android:clipToPadding="false"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:orientation="vertical"-->
+        <!--                    android:paddingVertical="8dp"-->
+        <!--                    android:layout_below="@id/placeholder_streak_thu">-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="@string/thu"-->
+        <!--                        android:textColor="@color/primary_700"-->
+        <!--                        android:textSize="@dimen/body"-->
+        <!--                        android:textStyle="normal" />-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="@string/date_placeholder"-->
+        <!--                        android:textColor="@color/primary_700"-->
+        <!--                        android:textSize="@dimen/body"-->
+        <!--                        android:textStyle="normal" />-->
+
+        <!--                </LinearLayout>-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/iv_streak_thu_check"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="24dp"-->
+        <!--                    android:contentDescription="@string/thursday_check_desc"-->
+        <!--                    android:src="@drawable/ic_check"-->
+        <!--                    android:layout_centerHorizontal="true"-->
+        <!--                    android:layout_above="@id/ll_streak_thu"-->
+        <!--                    android:layout_marginBottom="-12dp"-->
+        <!--                    android:visibility="invisible"/>-->
+
+        <!--            </RelativeLayout>-->
+
+        <!--            <RelativeLayout-->
+        <!--                android:id="@+id/streak_fri"-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="4dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                app:layout_constraintStart_toEndOf="@+id/streak_thu"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/tv_streak_title"-->
+        <!--                app:layout_constraintEnd_toStartOf="@id/streak_sat">-->
+
+        <!--                <View-->
+        <!--                    android:id="@+id/placeholder_streak_fri"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="12dp" />-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/ll_streak_fri"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:background="@drawable/shape_rounded_outlined"-->
+        <!--                    android:clipToPadding="false"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:orientation="vertical"-->
+        <!--                    android:paddingVertical="8dp"-->
+        <!--                    android:layout_below="@id/placeholder_streak_fri">-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="@string/fri"-->
+        <!--                        android:textColor="@color/primary_700"-->
+        <!--                        android:textSize="@dimen/body"-->
+        <!--                        android:textStyle="normal" />-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="@string/date_placeholder"-->
+        <!--                        android:textColor="@color/primary_700"-->
+        <!--                        android:textSize="@dimen/body"-->
+        <!--                        android:textStyle="normal" />-->
+
+        <!--                </LinearLayout>-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/iv_streak_fri_check"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="24dp"-->
+        <!--                    android:contentDescription="@string/friday_check_desc"-->
+        <!--                    android:src="@drawable/ic_check"-->
+        <!--                    android:layout_centerHorizontal="true"-->
+        <!--                    android:layout_above="@id/ll_streak_fri"-->
+        <!--                    android:layout_marginBottom="-12dp"-->
+        <!--                    android:visibility="invisible"/>-->
+
+        <!--            </RelativeLayout>-->
+
+        <!--            <RelativeLayout-->
+        <!--                android:id="@+id/streak_sat"-->
+        <!--                android:layout_width="0dp"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:layout_marginStart="4dp"-->
+        <!--                android:layout_weight="1"-->
+        <!--                app:layout_constraintStart_toEndOf="@id/streak_fri"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/tv_streak_title"-->
+        <!--                app:layout_constraintEnd_toEndOf="parent">-->
+
+        <!--                <View-->
+        <!--                    android:id="@+id/placeholder_streak_sat"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="12dp" />-->
+
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/ll_streak_sat"-->
+        <!--                    android:layout_width="match_parent"-->
+        <!--                    android:layout_height="wrap_content"-->
+        <!--                    android:background="@drawable/shape_rounded_outlined"-->
+        <!--                    android:clipToPadding="false"-->
+        <!--                    android:gravity="center"-->
+        <!--                    android:orientation="vertical"-->
+        <!--                    android:paddingVertical="8dp"-->
+        <!--                    android:layout_below="@id/placeholder_streak_sat">-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="@string/sat"-->
+        <!--                        android:textColor="@color/primary_700"-->
+        <!--                        android:textSize="@dimen/body"-->
+        <!--                        android:textStyle="normal" />-->
+
+        <!--                    <TextView-->
+        <!--                        android:layout_width="wrap_content"-->
+        <!--                        android:layout_height="wrap_content"-->
+        <!--                        android:text="@string/date_placeholder"-->
+        <!--                        android:textColor="@color/primary_700"-->
+        <!--                        android:textSize="@dimen/body"-->
+        <!--                        android:textStyle="normal" />-->
+
+        <!--                </LinearLayout>-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/iv_streak_sat_check"-->
+        <!--                    android:layout_width="wrap_content"-->
+        <!--                    android:layout_height="24dp"-->
+        <!--                    android:contentDescription="@string/saturday_check_desc"-->
+        <!--                    android:src="@drawable/ic_check"-->
+        <!--                    android:layout_centerHorizontal="true"-->
+        <!--                    android:layout_above="@id/ll_streak_sat"-->
+        <!--                    android:layout_marginBottom="-12dp"-->
+        <!--                    android:visibility="invisible"/>-->
+
+        <!--            </RelativeLayout>-->
+
+        <!--        </LinearLayout>-->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_words"
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:background="@drawable/shape_rounded"
+            android:backgroundTint="@color/yellowish_50"
             android:paddingHorizontal="4dp"
-            android:paddingVertical="8dp">
+            android:paddingVertical="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:foregroundGravity="center"
+            android:padding="16dp">
 
             <TextView
-                android:id="@+id/tv_summary_title"
+                android:id="@+id/tv_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/summary_title"
-                android:textColor="@color/primary_700"
-                android:textSize="@dimen/large"
-                android:textStyle="bold"
-                app:layout_constraintBaseline_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_summary_desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/summary_desc"
-                android:textColor="@color/primary_700"
-                android:textSize="@dimen/body"
-                android:textStyle="normal"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_summary_title" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="128dp"
-                android:background="@drawable/shape_rounded"
-                android:backgroundTint="@color/yellowish_100"
+                android:text="&quot; Benih harapan mulai tumbuh. Terima kasih telah berani jujur hari ini. Lanjutkan, setiap curahanmu berarti. &quot;"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_summary_desc"
-                android:layout_marginTop="16dp"/>
+                app:layout_constraintTop_toTopOf="parent"
+                android:textAlignment="center"
+                android:textSize="@dimen/body"
+                android:textStyle="bold"
+                android:textColor="@color/primary_700"/>
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_summary_title"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:text="@string/summary_title"-->
+            <!--                android:textColor="@color/primary_700"-->
+            <!--                android:textSize="@dimen/large"-->
+            <!--                android:textStyle="bold"-->
+            <!--                app:layout_constraintBaseline_toTopOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent" />-->
+
+            <!--            <TextView-->
+            <!--                android:id="@+id/tv_summary_desc"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:text="@string/summary_desc"-->
+            <!--                android:textColor="@color/primary_700"-->
+            <!--                android:textSize="@dimen/body"-->
+            <!--                android:textStyle="normal"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/tv_summary_title" />-->
+
+            <!--            <LinearLayout-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:layout_height="128dp"-->
+            <!--                android:background="@drawable/shape_rounded"-->
+            <!--                android:backgroundTint="@color/yellowish_100"-->
+            <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toBottomOf="@id/tv_summary_desc"-->
+            <!--                android:layout_marginTop="16dp"/>-->
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
