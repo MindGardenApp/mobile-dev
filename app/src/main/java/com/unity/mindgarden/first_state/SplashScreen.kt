@@ -1,13 +1,12 @@
-package com.unity.mindgarden
+package com.unity.mindgarden.first_state
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.unity.mindgarden.R
+import com.unity.mindgarden.onboarding.onboarding1
 
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

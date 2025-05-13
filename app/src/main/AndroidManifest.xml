@@ -13,46 +13,46 @@
         android:theme="@style/Theme.MindGarden"
         tools:targetApi="31">
         <activity
-            android:name=".DiaryMain"
+            android:name=".diary.DiaryMain"
             android:exported="false" />
         <activity
-            android:name=".DiaryView"
+            android:name=".diary.DiaryView"
             android:exported="false" />
         <activity
-            android:name=".DiaryResult"
+            android:name=".diary.DiaryResult"
             android:exported="false" />
         <activity
-            android:name=".DiaryDone"
+            android:name=".diary.DiaryDone"
             android:exported="false" />
         <activity
-            android:name=".DiaryWelcome"
+            android:name=".diary.DiaryWelcome"
             android:exported="false" />
         <activity
-            android:name=".onboarding3"
+            android:name=".onboarding.onboarding3"
             android:exported="false" />
         <activity
-            android:name=".onboarding2"
+            android:name=".onboarding.onboarding2"
             android:exported="false" />
         <activity
-            android:name=".onboarding1"
+            android:name=".onboarding.onboarding1"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".first_state.Login"
             android:exported="false" />
         <activity
-            android:name=".Register"
+            android:name=".first_state.Register"
             android:exported="false" />
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".first_state.WelcomeActivity"
             android:exported="false" />
         <activity
-            android:name=".FailActivity"
+            android:name=".first_state.FailActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".main_feature.MainActivity"
             android:exported="false" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".first_state.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

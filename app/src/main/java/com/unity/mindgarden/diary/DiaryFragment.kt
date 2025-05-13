@@ -1,10 +1,11 @@
-package com.unity.mindgarden
+package com.unity.mindgarden.diary
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.unity.mindgarden.R
 
 class DiaryFragment: Fragment() {
     override fun onCreateView(

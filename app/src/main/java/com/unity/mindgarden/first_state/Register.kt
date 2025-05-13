@@ -1,4 +1,4 @@
-package com.unity.mindgarden
+package com.unity.mindgarden.first_state
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.unity.mindgarden.R
 
 class Register : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth

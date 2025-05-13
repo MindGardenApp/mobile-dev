@@ -1,10 +1,11 @@
-package com.unity.mindgarden
+package com.unity.mindgarden.first_state
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.unity.mindgarden.R
 
 class FailActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

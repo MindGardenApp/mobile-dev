@@ -1,4 +1,4 @@
-package com.unity.mindgarden
+package com.unity.mindgarden.main_feature
 
 import android.os.Bundle
 import android.widget.ImageView
@@ -7,6 +7,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.unity.mindgarden.R
+import com.unity.mindgarden.diary.DiaryFragment
 
 class MainActivity : AppCompatActivity() {
 

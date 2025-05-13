@@ -1,12 +1,12 @@
-package com.unity.mindgarden
+package com.unity.mindgarden.onboarding
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.unity.mindgarden.first_state.Login
+import com.unity.mindgarden.R
 
 class onboarding2 : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

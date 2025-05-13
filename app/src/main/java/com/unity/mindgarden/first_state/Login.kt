@@ -1,4 +1,4 @@
-package com.unity.mindgarden
+package com.unity.mindgarden.first_state
 
 import android.content.Intent
 import android.os.Bundle
@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
+import com.unity.mindgarden.main_feature.MainActivity
+import com.unity.mindgarden.R
 
 class Login : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
