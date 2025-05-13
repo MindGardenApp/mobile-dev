@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:background="@drawable/shape_rounded_64"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:id="@+id/history_date"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginEnd="12dp"
+        android:background="@drawable/shape_rounded_24"
+        android:backgroundTint="@color/yellowish_100"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingVertical="4dp"
+        android:paddingHorizontal="16dp">
+
+        <TextView
+            android:id="@+id/tv_daily_month"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jan"
+            android:textColor="@color/black_500"
+            android:textSize="@dimen/body"
+            android:textStyle="normal" />
+
+        <TextView
+            android:id="@+id/tv_daily_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="01"
+            android:textColor="@color/primary_800"
+            android:textSize="@dimen/heading_h2"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_daily_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Label"
+            android:textColor="@color/primary_800"
+            android:textSize="@dimen/heading_h2"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_daily_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textColor="@color/black_300"
+            android:textSize="@dimen/caption" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_label_emoticon"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:src="@drawable/emoticon_joy" />
+
+</LinearLayout>
