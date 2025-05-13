@@ -2,5 +2,9 @@
 <resources>
     <dimen name="heading_h1">32sp</dimen>
     <dimen name="heading_h2">24sp</dimen>
+    <dimen name="heading_h3">20sp</dimen>
+    <dimen name="large">16sp</dimen>
+    <dimen name="medium">14sp</dimen>
     <dimen name="body">12sp</dimen>
+    <dimen name="small">8sp</dimen>
 </resources>
