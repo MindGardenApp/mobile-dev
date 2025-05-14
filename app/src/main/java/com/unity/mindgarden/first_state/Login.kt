@@ -28,15 +28,18 @@ class Login : AppCompatActivity() {
             insets
         }
 
-        // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
         val sessionManager = SessionManager(this)
 
-        // Jika sudah login, langsung ke MainActivity
         if (sessionManager.isLoggedIn()) {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
+            val currentUser = FirebaseAuth.getInstance().currentUser
+            if (currentUser != null) {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            } else {
+                sessionManager.setLogin(false)
+            }
         }
 
         val etEmail = findViewById<EditText>(R.id.et_email)

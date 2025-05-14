@@ -1,5 +1,6 @@
 package com.unity.mindgarden.main_feature
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.unity.mindgarden.R
 import com.unity.mindgarden.TreeState
+import com.unity.mindgarden.first_state.Login
 
 class HomeFragment: Fragment() {
 
@@ -31,20 +33,23 @@ class HomeFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser == null) {
+            val intent = Intent(requireContext(), Login::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            requireActivity().finish()
+            return
+        }
+
         tvHeaderTitle = view.findViewById(R.id.tv_header_title)
         ivSoulGarden = view.findViewById(R.id.iv_soul_garden)
         tvStage = view.findViewById(R.id.tv_stage)
         tvStatus = view.findViewById(R.id.tv_status)
         tvMessage = view.findViewById(R.id.tv_message)
 
-        // get current user name
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        if (currentUser != null) {
-            val displayName = currentUser.displayName
-            tvHeaderTitle.text = "Halo, $displayName!"
-        } else {
-            tvHeaderTitle.text = "Halo, Pengguna!"
-        }
+        val displayName = currentUser.displayName ?: "Pengguna"
+        tvHeaderTitle.text = "Halo, $displayName!"
 
         val treeStates = mapOf(
             1 to TreeState(

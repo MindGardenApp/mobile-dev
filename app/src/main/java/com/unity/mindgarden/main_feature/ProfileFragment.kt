@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.unity.mindgarden.R
 import com.unity.mindgarden.first_state.Login
+import com.unity.mindgarden.utils.SessionManager
 
 class ProfileFragment: Fragment() {
     override fun onCreateView(
@@ -26,7 +27,14 @@ class ProfileFragment: Fragment() {
 
         logoutButton.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(context, Login::class.java))
+
+            val sessionManager = SessionManager(requireContext())
+            sessionManager.setLogin(false)
+
+            val intent = Intent(requireContext(), Login::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            requireActivity().finish()
         }
     }
 }
