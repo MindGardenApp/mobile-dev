@@ -6,8 +6,7 @@ import com.google.firebase.Timestamp
 data class DailyHistory(
     val title: String,
     val content: String,
-    val dateTime: Timestamp,
+    val dateTime: Date,
     val label: String,
     val score: Double,
-    val userId: String
 )

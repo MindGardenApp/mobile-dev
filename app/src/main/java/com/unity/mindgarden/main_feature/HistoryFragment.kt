@@ -12,11 +12,14 @@ import android.widget.Toast.makeText
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.toObject
 import com.unity.mindgarden.DailyHistory
 import com.unity.mindgarden.DailyHistoryAdapter
 import com.unity.mindgarden.R
+import java.util.Date
 
 class HistoryFragment : Fragment() {
 
@@ -46,8 +49,9 @@ class HistoryFragment : Fragment() {
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
-        db.collection("journals")
-            .whereEqualTo("userId", userId)
+        db.collection("users")
+            .document(userId)
+            .collection("journals")
             .get()
             .addOnSuccessListener { documents ->
                 journals.clear()
@@ -56,8 +60,13 @@ class HistoryFragment : Fragment() {
                     return@addOnSuccessListener
                 }
                 for (doc in documents) {
-                    Log.e("HistoryFragment", doc.data.toString())
-                    val journal = doc.toObject(DailyHistory::class.java)
+                    val journal = DailyHistory(
+                        title = doc.get("title") as String,
+                        content = doc.get("content") as String,
+                        dateTime = (doc.get("dateTime") as Timestamp).toDate(),
+                        label = doc.get("label") as String,
+                        score = doc.get("score") as Double
+                    )
                     journals.add(journal)
                 }
                 historyAdapter.notifyDataSetChanged()
