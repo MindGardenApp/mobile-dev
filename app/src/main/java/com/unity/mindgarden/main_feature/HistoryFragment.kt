@@ -1,25 +1,19 @@
 package com.unity.mindgarden.main_feature
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.LinearLayout
-import android.widget.Toast
-import android.widget.Toast.makeText
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.toObject
 import com.unity.mindgarden.DailyHistory
 import com.unity.mindgarden.DailyHistoryAdapter
 import com.unity.mindgarden.R
-import java.util.Date
 
 class HistoryFragment : Fragment() {
 
@@ -47,6 +41,17 @@ class HistoryFragment : Fragment() {
         historyAdapter = DailyHistoryAdapter(journals)
         historyRecyclerView.adapter = historyAdapter
 
+        loadData()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        view?.post {
+            loadData()
+        }
+    }
+
+    private fun loadData() {
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
         db.collection("users")
@@ -61,6 +66,8 @@ class HistoryFragment : Fragment() {
                 }
                 for (doc in documents) {
                     val journal = DailyHistory(
+                        userId = userId,
+                        documentId = doc.id,
                         title = doc.get("title") as String,
                         content = doc.get("content") as String,
                         dateTime = (doc.get("dateTime") as Timestamp).toDate(),
@@ -69,10 +76,8 @@ class HistoryFragment : Fragment() {
                     )
                     journals.add(journal)
                 }
+
                 historyAdapter.notifyDataSetChanged()
-            }
-            .addOnFailureListener {
-                Toast.makeText(context, "Gagal ambil data", Toast.LENGTH_SHORT).show()
             }
     }
 }

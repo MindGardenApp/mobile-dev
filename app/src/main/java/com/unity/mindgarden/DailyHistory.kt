@@ -1,9 +1,10 @@
 package com.unity.mindgarden
 
 import java.util.Date
-import com.google.firebase.Timestamp
 
 data class DailyHistory(
+    val userId: String = "",
+    val documentId: String = "",
     val title: String,
     val content: String,
     val dateTime: Date,

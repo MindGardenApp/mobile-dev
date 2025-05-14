@@ -19,7 +19,9 @@
     <color name="yellowish_50">#F9F8F1</color>
     <color name="yellowish_100">#EDECD8</color>
     <color name="yellowish_400">#B7AE68</color>
+    <color name="yellowish_800">#685238</color>
     <color name="yellowish_900">#574430</color>
+    <color name="yellowish_950">#302418</color>
     <color name="black_50">#FFFFFF</color>
     <color name="black_300">#B0B0B0</color>
     <color name="black_500">#6D6D6D</color>
