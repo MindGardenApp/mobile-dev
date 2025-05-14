@@ -56,52 +56,157 @@ class DiaryMain : AppCompatActivity() {
                 val request = ContentRequest(content)
 
                 // 🔄 Kirim ke Flask backend untuk prediksi
-                RetrofitInstance.api.predictMood(request).enqueue(object : Callback<PredictionResponse> {
-                    override fun onResponse(
-                        call: Call<PredictionResponse>,
-                        response: Response<PredictionResponse>
-                    ) {
-                        if (response.isSuccessful) {
-                            val prediction = response.body()
+                RetrofitInstance.api.predictMood(request)
+                    .enqueue(object : Callback<PredictionResponse> {
+                        override fun onResponse(
+                            call: Call<PredictionResponse>,
+                            response: Response<PredictionResponse>
+                        ) {
+                            if (response.isSuccessful) {
+                                val prediction = response.body()
 
-                            val label = prediction?.label ?: "unknown"
-                            val score = prediction?.score ?: 0.0
+                                val label = prediction?.label ?: "unknown"
+                                val score = prediction?.score ?: 0.0
 
-                            // 🔄 Simpan ke Firestore setelah dapat label
-                            val journalData = hashMapOf(
-                                "userId" to userId,
-                                "title" to title,
-                                "content" to content,
-                                "dateTime" to Date(),
-                                "label" to label,
-                                "score" to score
-                            )
+                                db.collection("users")
+                                    .document(userId)
+                                    .get()
+                                    .addOnSuccessListener { document ->
+                                        val soulGarden = document.get("soul_garden")!! as Map<*, *>
 
-                            db.collection("users")
-                                .document(userId)
-                                .collection("journals")
-                                .add(journalData)
-                                .addOnSuccessListener {
-                                    Toast.makeText(this@DiaryMain, "Jurnal berhasil disimpan", Toast.LENGTH_SHORT).show()
-                                    etJudulDiary.text.clear()
-                                    etContentDiary.text.clear()
+                                        var currentScore = soulGarden["currentScore"] as Long
+                                        var state = soulGarden["state"] as Long
+                                        var status = soulGarden["status"] as Long
 
-                                    val intent = Intent(this@DiaryMain, DiaryDone::class.java)
-                                    startActivity(intent)
-                                    finish()
-                                }
-                                .addOnFailureListener {
-                                    Toast.makeText(this@DiaryMain, "Gagal menyimpan jurnal: ${it.message}", Toast.LENGTH_SHORT).show()
-                                }
-                        } else {
-                            Toast.makeText(this@DiaryMain, "Prediksi gagal: ${response.code()}", Toast.LENGTH_SHORT).show()
+                                        currentScore += score.toInt()
+
+                                        when (state) {
+                                            1L -> {
+                                                if (currentScore <= 50) {
+                                                    status = 1
+                                                } else if (currentScore <= 100) {
+                                                    status = 2
+                                                } else if (currentScore <= 150) {
+                                                    status = 3
+                                                } else {
+                                                    state = 2
+                                                    status = 3
+                                                    currentScore = 301
+                                                }
+                                            }
+
+                                            2L -> {
+                                                if (currentScore <= 100) {
+                                                    status = 1
+                                                } else if (currentScore <= 200) {
+                                                    status = 2
+                                                } else if (currentScore <= 300) {
+                                                    status = 3
+                                                } else {
+                                                    state = 3
+                                                    status = 3
+                                                    currentScore = 351
+                                                }
+                                            }
+
+                                            3L -> {
+                                                if (currentScore <= 150) {
+                                                    status = 1
+                                                } else if (currentScore <= 300) {
+                                                    status = 2
+                                                } else if (currentScore <= 350) {
+                                                    status = 3
+                                                } else {
+                                                    state = 4
+                                                    status = 3
+                                                    currentScore = 601
+                                                }
+                                            }
+
+                                            4L -> {
+                                                if (currentScore <= 200) {
+                                                    status = 1
+                                                } else if (currentScore <= 400) {
+                                                    status = 2
+                                                } else if (currentScore <= 600) {
+                                                    status = 3
+                                                } else {
+                                                    state = 5
+                                                    status = 3
+                                                    currentScore = 751
+                                                }
+                                            }
+
+                                            5L -> {
+                                                if (currentScore <= 250) {
+                                                    status = 1
+                                                } else if (currentScore <= 500) {
+                                                    status = 2
+                                                } else if (currentScore <= 750) {
+                                                    status = 3
+                                                }
+                                            }
+                                        }
+
+                                        db.collection("users")
+                                            .document(userId)
+                                            .update(
+                                                "soul_garden.currentScore", currentScore,
+                                                "soul_garden.state", state,
+                                                "soul_garden.status", status
+                                            )
+                                    }
+
+                                // 🔄 Simpan ke Firestore setelah dapat label
+                                val journalData = hashMapOf(
+                                    "title" to title,
+                                    "content" to content,
+                                    "dateTime" to Date(),
+                                    "label" to label,
+                                    "score" to score
+                                )
+
+                                db.collection("users")
+                                    .document(userId)
+                                    .collection("journals")
+                                    .add(journalData)
+                                    .addOnSuccessListener {
+                                        Toast.makeText(
+                                            this@DiaryMain,
+                                            "Jurnal berhasil disimpan",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                        etJudulDiary.text.clear()
+                                        etContentDiary.text.clear()
+
+                                        val intent = Intent(this@DiaryMain, DiaryDone::class.java)
+                                        startActivity(intent)
+                                        finish()
+                                    }
+                                    .addOnFailureListener {
+                                        Toast.makeText(
+                                            this@DiaryMain,
+                                            "Gagal menyimpan jurnal: ${it.message}",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                            } else {
+                                Toast.makeText(
+                                    this@DiaryMain,
+                                    "Prediksi gagal: ${response.code()}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
                         }
-                    }
 
-                    override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
-                        Toast.makeText(this@DiaryMain, "Koneksi gagal: ${t.message}", Toast.LENGTH_SHORT).show()
-                    }
-                })
+                        override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
+                            Toast.makeText(
+                                this@DiaryMain,
+                                "Koneksi gagal: ${t.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    })
             } else {
                 Toast.makeText(this, "User belum login", Toast.LENGTH_SHORT).show()
             }
@@ -118,14 +223,13 @@ class DiaryMain : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
     }
 
     override fun onBackPressed() {
+        super.onBackPressed()
         val intent = Intent(this, DiaryWelcome::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         startActivity(intent)
         finish()
     }
-
 }
