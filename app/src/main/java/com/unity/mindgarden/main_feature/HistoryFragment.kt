@@ -5,18 +5,25 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
+import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.unity.mindgarden.DailyHistory
 import com.unity.mindgarden.DailyHistoryAdapter
 import com.unity.mindgarden.R
-import java.util.Date
 
 class HistoryFragment : Fragment() {
 
     private lateinit var historyRecyclerView: RecyclerView
     private lateinit var historyAdapter: DailyHistoryAdapter
+    private lateinit var llNoDiaryPlaceholder: LinearLayout
+
+    private val journals = mutableListOf<DailyHistory>()
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,19 +37,32 @@ class HistoryFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         historyRecyclerView = view.findViewById(R.id.recycler_history)
+        llNoDiaryPlaceholder = view.findViewById(R.id.ll_no_diary_placeholder)
         historyRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        val data = listOf(
-            DailyHistory(
-                dateTime = Date(2025, 5, 1),
-                title = "Day 1",
-                diary = "lorem ipsum",
-                label = "joy"
-            )
-        )
-
-        historyAdapter = DailyHistoryAdapter(data)
+        historyAdapter = DailyHistoryAdapter(journals)
         historyRecyclerView.adapter = historyAdapter
+
+        val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        db.collection("users")
+            .document(userId)
+            .collection("journals")
+            .get()
+            .addOnSuccessListener { documents ->
+                journals.clear()
+                if (documents.isEmpty) {
+                    llNoDiaryPlaceholder.visibility = View.VISIBLE
+                    return@addOnSuccessListener
+                }
+                for (doc in documents) {
+                    val journal = doc.toObject(DailyHistory::class.java)
+                    journals.add(journal)
+                }
+                historyAdapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener {
+                Toast.makeText(context, "Gagal ambil data", Toast.LENGTH_SHORT).show()
+            }
 
         val btnBack = view.findViewById<ImageButton>(R.id.btn_back)
         btnBack.setOnClickListener {
@@ -50,6 +70,5 @@ class HistoryFragment : Fragment() {
 
             (requireActivity() as? MainActivity)?.activateHomeMenu()
         }
-
     }
 }

@@ -4,7 +4,8 @@ import java.util.Date
 
 data class DailyHistory(
     val title: String,
-    val diary: String,
+    val content: String,
+    val dateTime: Date,
     val label: String,
-    val dateTime: Date
+    val score: Int
 )

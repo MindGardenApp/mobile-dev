@@ -69,7 +69,7 @@ class DiaryMain : AppCompatActivity() {
                             val journalData = hashMapOf(
                                 "title" to title,
                                 "content" to content,
-                                "date" to Date(),
+                                "dateTime" to Date(),
                                 "label" to label,
                                 "score" to score
                             )
