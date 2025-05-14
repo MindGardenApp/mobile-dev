@@ -140,7 +140,7 @@ class HomeFragment: Fragment() {
                         treeStates[state]?.let { tree ->
                             ivSoulGarden.setImageResource(tree.images[status - 1])
                             tvStage.text = tree.stageName
-                            tvStatus.text = tree.statusLabels[status -1]
+                            tvStatus.text = tree.statusLabels[status]
                             "\"${tree.messages[status - 1]}\"".also { tvMessage.text = it }
                         }
                     } else {
