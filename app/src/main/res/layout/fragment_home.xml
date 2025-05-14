@@ -100,7 +100,7 @@
                 android:id="@+id/tv_stage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Benih"
+                android:text="Memuat..."
                 android:textColor="@color/primary_700"
                 android:textSize="@dimen/heading_h2"
                 android:textStyle="bold" />
@@ -135,7 +135,7 @@
                 android:id="@+id/tv_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Subur"
+                android:text="Memuat..."
                 android:textColor="@color/primary_700"
                 android:textSize="@dimen/heading_h2"
                 android:textStyle="bold" />
@@ -572,7 +572,7 @@
                 android:id="@+id/tv_message"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="&quot; Benih harapan mulai tumbuh. Terima kasih telah berani jujur hari ini. Lanjutkan, setiap curahanmu berarti. &quot;"
+                android:text="Memuat..."
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

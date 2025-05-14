@@ -12,7 +12,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.unity.mindgarden.R
 
@@ -77,8 +76,9 @@ class Register : AppCompatActivity() {
                                 "name" to name,
                                 "email" to email,
                                 "soul_garden" to mapOf(
-                                    "totalScore" to 0,
-                                    "updatedAt" to FieldValue.serverTimestamp()
+                                    "state" to 1,
+                                    "status" to 3,
+                                    "currentScore" to 101
                                 )
                             )
 
