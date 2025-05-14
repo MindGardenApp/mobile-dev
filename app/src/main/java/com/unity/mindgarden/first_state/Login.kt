@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.unity.mindgarden.main_feature.MainActivity
 import com.unity.mindgarden.R
+import com.unity.mindgarden.utils.SessionManager
 
 class Login : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -30,7 +31,10 @@ class Login : AppCompatActivity() {
         // Initialize Firebase Auth
         auth = FirebaseAuth.getInstance()
 
-        if (auth.currentUser != null) {
+        val sessionManager = SessionManager(this)
+
+        // Jika sudah login, langsung ke MainActivity
+        if (sessionManager.isLoggedIn()) {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
@@ -52,11 +56,13 @@ class Login : AppCompatActivity() {
             auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        startActivity(Intent(this, WelcomeActivity::class.java))
+                        // Menyimpan status login ke SessionManager
+                        sessionManager.setLogin(true)
+
+                        startActivity(Intent(this, MainActivity::class.java))
                         finish()
                     } else {
-                        startActivity(Intent(this, FailActivity::class.java))
-                        finish()
+                        Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                     }
                 }
         }
