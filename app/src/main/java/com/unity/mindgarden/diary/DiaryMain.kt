@@ -4,12 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.unity.mindgarden.R
+import com.unity.mindgarden.main_feature.MainActivity
 import com.unity.mindgarden.model.ContentRequest
 import com.unity.mindgarden.model.PredictionResponse
 import com.unity.mindgarden.network.RetrofitInstance
@@ -107,5 +109,22 @@ class DiaryMain : AppCompatActivity() {
             etJudulDiary.text.clear()
             etContentDiary.text.clear()
         }
+
+        val btnBack = findViewById<ImageButton>(R.id.btn_back)
+        btnBack.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(intent)
+            finish()
+        }
+
     }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, DiaryWelcome::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        startActivity(intent)
+        finish()
+    }
+
 }
