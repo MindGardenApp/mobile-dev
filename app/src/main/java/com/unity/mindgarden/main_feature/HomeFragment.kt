@@ -125,7 +125,9 @@ class HomeFragment: Fragment() {
         )
 
         val db = FirebaseFirestore.getInstance()
-        val uid = FirebaseAuth.getInstance().currentUser?.uid // atau uid spesifik
+        val uid = FirebaseAuth.getInstance().currentUser?.uid
+
+        Toast.makeText(context, "uid: $uid", Toast.LENGTH_SHORT).show()
 
         db.collection("users").document(uid!!)
             .get()
@@ -140,7 +142,7 @@ class HomeFragment: Fragment() {
                         treeStates[state]?.let { tree ->
                             ivSoulGarden.setImageResource(tree.images[status - 1])
                             tvStage.text = tree.stageName
-                            tvStatus.text = tree.statusLabels[status]
+                            tvStatus.text = tree.statusLabels[status - 1]
                             "\"${tree.messages[status - 1]}\"".also { tvMessage.text = it }
                         }
                     } else {
