@@ -1,12 +1,14 @@
 package com.unity.mindgarden.main_feature
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.Toast
+import android.widget.Toast.makeText
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -44,9 +46,8 @@ class HistoryFragment : Fragment() {
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid ?: return
 
-        db.collection("users")
-            .document(userId)
-            .collection("journals")
+        db.collection("journals")
+            .whereEqualTo("userId", userId)
             .get()
             .addOnSuccessListener { documents ->
                 journals.clear()
@@ -55,6 +56,7 @@ class HistoryFragment : Fragment() {
                     return@addOnSuccessListener
                 }
                 for (doc in documents) {
+                    Log.e("HistoryFragment", doc.data.toString())
                     val journal = doc.toObject(DailyHistory::class.java)
                     journals.add(journal)
                 }
@@ -63,12 +65,5 @@ class HistoryFragment : Fragment() {
             .addOnFailureListener {
                 Toast.makeText(context, "Gagal ambil data", Toast.LENGTH_SHORT).show()
             }
-
-        val btnBack = view.findViewById<ImageButton>(R.id.btn_back)
-        btnBack.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
-
-            (requireActivity() as? MainActivity)?.activateHomeMenu()
-        }
     }
 }

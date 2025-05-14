@@ -69,6 +69,7 @@ class DiaryMain : AppCompatActivity() {
 
                             // 🔄 Simpan ke Firestore setelah dapat label
                             val journalData = hashMapOf(
+                                "userId" to userId,
                                 "title" to title,
                                 "content" to content,
                                 "dateTime" to Date(),
