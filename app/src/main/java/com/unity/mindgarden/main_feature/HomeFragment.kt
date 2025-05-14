@@ -127,8 +127,6 @@ class HomeFragment: Fragment() {
         val db = FirebaseFirestore.getInstance()
         val uid = FirebaseAuth.getInstance().currentUser?.uid
 
-        Toast.makeText(context, "uid: $uid", Toast.LENGTH_SHORT).show()
-
         db.collection("users").document(uid!!)
             .get()
             .addOnSuccessListener { document ->
