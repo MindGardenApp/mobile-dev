@@ -63,6 +63,7 @@ class MainActivity : AppCompatActivity() {
         historyButton.setOnClickListener {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, HistoryFragment())
+                .addToBackStack(null)
                 .commit()
             clearIndicators()
             historyIndicator.visibility = ImageView.VISIBLE
@@ -96,5 +97,10 @@ class MainActivity : AppCompatActivity() {
         historyIndicator.visibility = ImageView.INVISIBLE
         settingsIndicator.visibility = ImageView.INVISIBLE
         profileIndicator.visibility = ImageView.INVISIBLE
+    }
+
+    fun activateHomeMenu() {
+        clearIndicators()
+        homeIndicator.visibility = ImageView.VISIBLE
     }
 }
