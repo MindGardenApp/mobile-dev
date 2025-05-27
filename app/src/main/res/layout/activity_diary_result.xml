@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/iv_background"
         android:layout_width="match_parent"
         android:layout_height="360dp"
         android:scaleType="centerCrop"
@@ -27,7 +27,7 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/iv_emoticon"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_marginTop="24dp"
@@ -38,97 +38,104 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/tv_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/shape_rounded_outline_yellowish"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="4dp"
+        android:text="May 5, 2025"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_emoticon" />
+
+    <TextView
         android:id="@+id/result_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="52dp"
         android:gravity="center"
-        android:text="Kamu Sedang \nSedih Hari Ini!"
+        android:text="Kamu Sedang \nTerkejut Hari Ini!"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_emoticon" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="360dp"
-        android:layout_height="160dp"
-        android:layout_marginTop="4dp"
-        android:src="@drawable/background_text"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/result_title" />
+        app:layout_constraintTop_toBottomOf="@id/result_title"
+        app:layout_constraintVertical_bias="0.19">
 
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="360dp"
-        android:layout_height="160dp"
-        android:src="@drawable/background_text"
-        app:layout_constraintEnd_toEndOf="@+id/imageView5"
-        app:layout_constraintStart_toStartOf="@+id/imageView5"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="260dp"
+            android:background="@drawable/shape_rounded_outline_yellowish"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_background">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Tentang emosimu hari ini"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintHorizontal_bias="0.163"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toTopOf="@+id/imageView4" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Saran untuk kamu"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintHorizontal_bias="0.127"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+                <TextView
+                    android:id="@+id/tv_dairy_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:layout_weight="1"
+                    android:text="Memuat..."
+                    android:textColor="@color/yellowish_950"
+                    android:textSize="@dimen/heading_h3"
+                    android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="309dp"
-        android:layout_height="78dp"
-        android:text="Kamu sedang merasakan kesedihan yang dalam, dan itu wajar. MindGarden memahami bahwa tak semua hari penuh warna. Menuliskan perasaan ini adalah bentuk keberanian. Dengan mengenali kesedihan, kamu sedang merawat luka yang tak terlihat. 🌧️"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintHorizontal_bias="0.568"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+                <ImageButton
+                    android:id="@+id/btn_delete"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/shape_round"
+                    android:src="@drawable/ic_trash" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="309dp"
-        android:layout_height="78dp"
-        android:text="Berikan dirimu waktu tanpa tuntutan. Dengarkan musik yang menenangkan, tarik napas perlahan. Biarkan air mata jatuh jika perlu — itu bagian dari proses penyembuhan. 💧"
-        android:textSize="10sp"
-        app:layout_constraintEnd_toEndOf="@+id/imageView4"
-        app:layout_constraintHorizontal_bias="0.568"
-        app:layout_constraintStart_toStartOf="@+id/imageView4"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_diary_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Memuat..."
+                android:textColor="@color/yellowish_800"
+                android:textSize="@dimen/body" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/goHomeButton"
         android:layout_width="360dp"
         android:layout_height="51dp"
-        android:layout_marginTop="8dp"
         android:backgroundTint="@color/green_dark"
         android:text="Home"
         android:textColor="@color/white"
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
         app:strokeColor="@color/green_primary"
         app:strokeWidth="1dp" />
 
