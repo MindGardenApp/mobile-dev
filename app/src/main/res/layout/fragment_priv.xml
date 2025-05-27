@@ -239,7 +239,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="MindGarden adalah aplikasi jurnaling digital berbasis AI yang membantumu mengenali dan merawat kondisi mental melalui tulisan. Setiap jurnal yang kamu buat akan dianalisis secara cerdas untuk membantu memahami emosimu, dan divisualisasikan melalui pohon virtual yang mencerminkan keadaan hatimu."
+                        android:text="Informasi login dan akun kamu disimpan secara aman. Kami menggunakan metode autentikasi terpercaya untuk melindungi akses ke akunmu, dan tidak menyimpan kata sandi dalam bentuk terbaca. Data akun hanya digunakan untuk memastikan pengalaman personalisasi tanpa membagikan informasi ke pihak ketiga."
                         android:textColor="#444444"
                         android:textSize="16sp"
                         android:visibility="gone" />
