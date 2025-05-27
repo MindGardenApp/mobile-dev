@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/faq_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".additional_Setting.FaqFragment">
+
+    <View
+        android:id="@+id/top_background"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:background="@color/third_100"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Back"
+        android:src="@drawable/back_button"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewDiary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FAQ"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginStart="6dp"
+        app:layout_constraintStart_toEndOf="@id/btn_back"
+        app:layout_constraintTop_toTopOf="@id/btn_back"
+        app:layout_constraintBottom_toBottomOf="@id/btn_back" />
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/faq_scroll_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/textViewDiary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:fillViewport="true"> <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/faq_content_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="16dp"> <androidx.cardview.widget.CardView
+        android:id="@+id/dropdownCard"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp" android:elevation="4dp"
+        app:cardCornerRadius="12dp"
+        app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:id="@+id/dropdownHeader1">
+
+                <TextView
+                    android:id="@+id/dropdownTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Apa itu MindGarden?"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#000000" />
+
+                <ImageView
+                    android:id="@+id/dropdownIcon1"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="8dp"
+                    android:src="@drawable/arrow_down"
+                    android:contentDescription="Dropdown Icon" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/dropdownContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="MindGarden adalah aplikasi jurnaling digital berbasis AI yang membantumu mengenali dan merawat kondisi mental melalui tulisan. Setiap jurnal yang kamu buat akan dianalisis secara cerdas untuk membantu memahami emosimu, dan divisualisasikan melalui pohon virtual yang mencerminkan keadaan hatimu."
+                android:textSize="16sp"
+                android:textColor="#444444"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/dropdownCard2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintTop_toBottomOf="@id/dropdownCard" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:id="@+id/dropdownHeader2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/dropdownTitle2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Apakah tulisan saya dibaca oleh orang lain?"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000" />
+
+                    <ImageView
+                        android:id="@+id/dropdownIcon2"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/arrow_down"
+                        android:contentDescription="Dropdown Icon" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/dropdownContent2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Tidak. Semua tulisanmu bersifat pribadi dan aman. Analisis dilakukan oleh AI untuk memberi insight emosional tanpa menyimpan identitas atau menyebarkan isi jurnalmu."
+                    android:textSize="16sp"
+                    android:textColor="#444444"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/dropdownCard3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintTop_toBottomOf="@id/dropdownCard2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:id="@+id/dropdownHeader3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/dropdownTitle3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Bagaimana AI MindGarden bekerja?"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000" />
+
+                    <ImageView
+                        android:id="@+id/dropdownIcon3"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/arrow_down"
+                        android:contentDescription="Dropdown Icon" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/dropdownContent3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="MindGarden menggunakan Natural Language Processing (NLP) untuk membaca nuansa emosional dari tulisanmu—bukan untuk menilai, tapi untuk mengenali pola suasana hati dan memberikan refleksi atau dukungan visual (seperti pertumbuhan pohon)."
+                    android:textSize="16sp"
+                    android:textColor="#444444"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/dropdownCard4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintTop_toBottomOf="@id/dropdownCard3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:id="@+id/dropdownHeader4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/dropdownTitle4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Apa arti dari kondisi pohon saya?"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000" />
+
+                    <ImageView
+                        android:id="@+id/dropdownIcon4"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/arrow_down"
+                        android:contentDescription="Dropdown Icon" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/dropdownContent4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Pohonmu adalah cerminan dari perjalanan mentalmu. Jika kamu sering menulis dan berada dalam kondisi positif, pohon akan tumbuh subur dan berbuah. Saat kamu sedang dalam kondisi sulit, pohon mungkin akan layu—bukan sebagai hukuman, tapi sinyal lembut bahwa kamu sedang butuh dirawat."
+                    android:textSize="16sp"
+                    android:textColor="#444444"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/dropdownCard5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintTop_toBottomOf="@id/dropdownCard4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:id="@+id/dropdownHeader5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/dropdownTitle5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Apakah saya bisa menulis tanpa analisis AI?"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000" />
+
+                    <ImageView
+                        android:id="@+id/dropdownIcon5"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/arrow_down"
+                        android:contentDescription="Dropdown Icon" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/dropdownContent5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Tentu. Kamu bisa memilih untuk menulis jurnal biasa tanpa aktivasi analisis AI di pengaturan. MindGarden tetap menjadi ruang curhatmu, apa pun cara yang kamu pilih."
+                    android:textSize="16sp"
+                    android:textColor="#444444"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/dropdownCard6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:elevation="4dp"
+            app:cardCornerRadius="12dp"
+            app:layout_constraintTop_toBottomOf="@id/dropdownCard5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:id="@+id/dropdownHeader6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:id="@+id/dropdownTitle6"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Apakah saya bisa melihat perkembangan emosiku dari waktu ke waktu?"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="#000000" />
+
+                    <ImageView
+                        android:id="@+id/dropdownIcon6"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/arrow_down"
+                        android:contentDescription="Dropdown Icon" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/dropdownContent6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Ya. MindGarden menyediakan fitur kalender mood dan histori tulisan, serta ringkasan mingguan yang menunjukkan tren emosional dan insight personal yang mungkin bisa membantumu lebih mengenal diri sendiri."
+                    android:textSize="16sp"
+                    android:textColor="#444444"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
