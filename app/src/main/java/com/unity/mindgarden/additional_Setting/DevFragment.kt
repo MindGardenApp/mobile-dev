@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.unity.mindgarden.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -33,9 +34,14 @@ class DevFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_dev, container, false)
+    ): View = inflater.inflate(R.layout.fragment_dev, container, false)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        // Setup tombol kembali
+        val btnBack = view.findViewById<ImageView>(R.id.btn_back)
+        btnBack.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
+        }
     }
 
     companion object {
