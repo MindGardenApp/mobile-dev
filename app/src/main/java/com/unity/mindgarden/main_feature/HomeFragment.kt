@@ -264,8 +264,12 @@ class HomeFragment : Fragment() {
                                     )
                                     progressBarEmo1.max = totalData
                                     progressBarEmo1.progress = value
-                                    val percentage = (value / totalData * 100).toString() + "%"
-                                    tvEmo1Value.text = percentage
+                                    if (totalData == 0) {
+                                        tvEmo1Value.text = "0%"
+                                    } else {
+                                        val percentage = (value / totalData * 100).toString() + "%"
+                                        tvEmo1Value.text = percentage
+                                    }
                                 }
                                 2 -> {
                                     ivEmo2.setImageResource(
@@ -280,8 +284,12 @@ class HomeFragment : Fragment() {
                                     )
                                     progressBarEmo2.max = totalData
                                     progressBarEmo2.progress = value
-                                    val percentage = (value / totalData * 100).toString() + "%"
-                                    tvEmo2Value.text = percentage
+                                    if (totalData == 0) {
+                                        tvEmo1Value.text = "0%"
+                                    } else {
+                                        val percentage = (value / totalData * 100).toString() + "%"
+                                        tvEmo1Value.text = percentage
+                                    }
                                 }
                                 3 -> {
                                     ivEmo3.setImageResource(
@@ -296,8 +304,12 @@ class HomeFragment : Fragment() {
                                     )
                                     progressBarEmo3.max = totalData
                                     progressBarEmo3.progress = value
-                                    val percentage = (value / totalData * 100).toString() + "%"
-                                    tvEmo3Value.text = percentage
+                                    if (totalData == 0) {
+                                        tvEmo1Value.text = "0%"
+                                    } else {
+                                        val percentage = (value / totalData * 100).toString() + "%"
+                                        tvEmo1Value.text = percentage
+                                    }
                                 }
                             }
                         }
