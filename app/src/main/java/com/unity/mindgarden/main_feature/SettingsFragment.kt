@@ -23,8 +23,8 @@ class SettingsFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 //        Menuju FAQ
-        val teksFaq = view.findViewById<View>(R.id.teksfaq)
-        val imageFaq = view.findViewById<View>(R.id.imagefaq)
+        val teksFaq = view.findViewById<View>(R.id.tv_faq)
+        val imageFaq = view.findViewById<View>(R.id.iv_faq)
 
         // Buat satu listener untuk keduanya
         val goToFaqClickListener = View.OnClickListener {
@@ -40,8 +40,8 @@ class SettingsFragment: Fragment() {
 
 
 //      Menuju Kontak Developer
-        val teksdev = view.findViewById<View>(R.id.tekskontakdeveloper)
-        val imageDev = view.findViewById<View>(R.id.imagetelephone)
+        val teksdev = view.findViewById<View>(R.id.tv_contact)
+        val imageDev = view.findViewById<View>(R.id.iv_contact)
 
         // Buat satu listener untuk keduanya
         val goToDevClickListener = View.OnClickListener {
@@ -56,8 +56,8 @@ class SettingsFragment: Fragment() {
         imageDev.setOnClickListener(goToDevClickListener)
 
         // Menuju Privasi
-        val tekspriv = view.findViewById<View>(R.id.teksprivacy)
-        val imagepriv = view.findViewById<View>(R.id.imageprivacy)
+        val tekspriv = view.findViewById<View>(R.id.tv_privacy)
+        val imagepriv = view.findViewById<View>(R.id.iv_privacy)
 
         // Buat satu listener untuk keduanya
         val goToPrivacyClickListener = View.OnClickListener {
