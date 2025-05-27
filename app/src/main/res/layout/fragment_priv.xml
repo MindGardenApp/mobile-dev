@@ -174,7 +174,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Tidak.\nSemua tulisanmu bersifat pribadi dan aman. Analisis dilakukan oleh AI untuk memberi insight emosional tanpa menyimpan identitas atau menyebarkan isi jurnalmu."
+                        android:text="Setiap tulisan dalam jurnalmu dianalisis secara otomatis oleh AI untuk mengenali pola emosi yang muncul. Proses ini membantu memberikan wawasan emosional tanpa menyimpan data pribadi, identitas, atau isi jurnal secara permanen. Semua analisis dilakukan secara lokal atau dienkripsi sesuai standar keamanan."
                         android:textColor="#444444"
                         android:textSize="16sp"
                         android:visibility="gone" />
@@ -293,7 +293,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Tidak. Semua tulisanmu bersifat pribadi dan aman. Analisis dilakukan oleh AI untuk memberi insight emosional tanpa menyimpan identitas atau menyebarkan isi jurnalmu."
+                        android:text="Kamu memiliki kendali penuh atas semua jurnal yang kamu tulis. Tidak ada data yang dibagikan ke pihak ketiga tanpa izinmu. MindGarden menjamin bahwa isi jurnalmu tetap pribadi dan tidak digunakan untuk keperluan lain selain memberikan insight emosional secara anonim dan aman."
                         android:textColor="#444444"
                         android:textSize="16sp"
                         android:visibility="gone" />
