@@ -79,6 +79,27 @@ class Register : AppCompatActivity() {
                                     "state" to 1,
                                     "status" to 3,
                                     "currentScore" to 101
+                                ),
+                                "stats" to mapOf(
+                                    "joy" to 0,
+                                    "sadness" to 0,
+                                    "anger" to 0,
+                                    "fear" to 0,
+                                    "love" to 0,
+                                    "surprise" to 0
+                                ),
+                                "streak" to mapOf(
+                                    "count" to 0,
+                                    "last" to null,
+                                    "weekly" to mapOf(
+                                        "sunday" to false,
+                                        "monday" to false,
+                                        "tuesday" to false,
+                                        "wednesday" to false,
+                                        "thursday" to false,
+                                        "friday" to false,
+                                        "saturday" to false
+                                    )
                                 )
                             )
 

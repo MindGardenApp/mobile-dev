@@ -40,4 +40,8 @@
     <string name="hallo_placeholder">Hallo, User!</string>
     <string name="header_greeting">Selamat datang kembali di MindGarden!</string>
     <string name="soul_garden_placeholder">soul garden</string>
+    <string name="streak_icon_desc">streak icon</string>
+    <string name="streak_placeholder">0</string>
+    <string name="emo_icon_placeholder">emo placeholder</string>
+    <string name="emo_stat_placeholder">0%</string>
 </resources>

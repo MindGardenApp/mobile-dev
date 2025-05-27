@@ -1,9 +1,6 @@
 package com.unity.mindgarden
 
 data class TreeState(
-    val stageName: String,
     val thresholds: List<IntRange>,
-    val images: List<Int>,
-    val statusLabels: List<String>,
-    val messages: List<String>
+    val images: List<Int>
 )

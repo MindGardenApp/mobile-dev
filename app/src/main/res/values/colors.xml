@@ -17,6 +17,7 @@
     <color name="primary_900">#213326</color>
     <color name="third_100">#E4EBDC</color>
     <color name="third_200">#CAD9BD</color>
+    <color name="third_500">#6E8C56</color>
     <color name="yellowish_50">#F9F8F1</color>
     <color name="yellowish_100">#EDECD8</color>
     <color name="yellowish_400">#B7AE68</color>
@@ -26,4 +27,7 @@
     <color name="black_50">#FFFFFF</color>
     <color name="black_300">#B0B0B0</color>
     <color name="black_500">#6D6D6D</color>
+    <color name="accent_300">#88AB8E</color>
+    <color name="accent_500">#507959</color>
+    <color name="accent_800">#283D2E</color>
 </resources>
