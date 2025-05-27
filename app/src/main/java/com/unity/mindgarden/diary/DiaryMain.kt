@@ -166,6 +166,10 @@ class DiaryMain : AppCompatActivity() {
                 ).show()
                 etJudulDiary.text.clear()
                 etContentDiary.text.clear()
+
+                val intent = Intent(this@DiaryMain, DiaryDone::class.java)
+                startActivity(intent)
+                finish()
             }
             .addOnFailureListener {
                 Toast.makeText(
