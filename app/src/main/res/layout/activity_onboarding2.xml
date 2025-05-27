@@ -11,8 +11,8 @@
         android:id="@+id/hape1"
         android:layout_width="310dp"
         android:layout_height="612dp"
-        android:src="@drawable/phone2"
         android:layout_marginTop="32dp"
+        android:src="@drawable/phone2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -24,12 +24,10 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/background_secondary" />
 
@@ -56,40 +54,41 @@
         android:gravity="center"
         android:text="Kenali pola emosimu dan temukan \nhari-hari terbaik untuk bertumbuh."
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@+id/teksjudul"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/teksjudul"
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/nextButton"
-        android:layout_width="120dp"
+        android:layout_width="0dp"
         android:layout_height="52dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/green_primary"
         android:text="Next"
         android:textColor="@color/white"
         app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/skipButton"
-        app:layout_constraintTop_toBottomOf="@+id/tekssub"
         app:strokeColor="@color/green_primary"
         app:strokeWidth="1dp" />
 
     <Button
         android:id="@+id/skipButton"
-        android:layout_width="120dp"
+        android:layout_width="0dp"
         android:layout_height="52dp"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@android:color/transparent"
         android:text="Skip"
         android:textColor="@color/green_dark"
         android:textColorHint="@color/green_dark"
         app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/nextButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tekssub"
         app:strokeWidth="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
