@@ -68,11 +68,11 @@
             android:padding="16dp">
 
             <LinearLayout
+                android:id="@+id/dropdownHeader1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:gravity="center_vertical"
-                android:id="@+id/dropdownHeader1">
+                android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/dropdownTitle"
@@ -80,17 +80,17 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Apa itu MindGarden?"
+                    android:textColor="#000000"
                     android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:textColor="#000000" />
+                    android:textStyle="bold" />
 
                 <ImageView
                     android:id="@+id/dropdownIcon1"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_marginStart="8dp"
-                    android:src="@drawable/arrow_down"
-                    android:contentDescription="Dropdown Icon" />
+                    android:contentDescription="Dropdown Icon"
+                    android:src="@drawable/arrow_down" />
             </LinearLayout>
 
             <TextView
@@ -99,8 +99,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="MindGarden adalah aplikasi jurnaling digital berbasis AI yang membantumu mengenali dan merawat kondisi mental melalui tulisan. Setiap jurnal yang kamu buat akan dianalisis secara cerdas untuk membantu memahami emosimu, dan divisualisasikan melalui pohon virtual yang mencerminkan keadaan hatimu."
-                android:textSize="16sp"
                 android:textColor="#444444"
+                android:textSize="16sp"
                 android:visibility="gone" />
 
         </LinearLayout>
