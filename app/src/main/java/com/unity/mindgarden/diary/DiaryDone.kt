@@ -8,7 +8,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.unity.mindgarden.R
-import com.unity.mindgarden.main_feature.MainActivity
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class DiaryDone : AppCompatActivity() {
 
@@ -26,7 +28,17 @@ class DiaryDone : AppCompatActivity() {
 
         doneButton = findViewById(R.id.btn_continue)
         doneButton.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            val label = intent.getStringExtra("label") ?: "No Label"
+            val title = intent.getStringExtra("title") ?: "No Title"
+            val content = intent.getStringExtra("content") ?: "No Content"
+            val date = intent.getStringExtra("date") ?: SimpleDateFormat("MM dd, yyyy", Locale.getDefault()).format(Date())
+
+            val intent = Intent(this, DiaryResult::class.java)
+            intent.putExtra("label", label)
+            intent.putExtra("title", title)
+            intent.putExtra("content", content)
+            intent.putExtra("date", date)
+            startActivity(intent)
             finish()
         }
     }

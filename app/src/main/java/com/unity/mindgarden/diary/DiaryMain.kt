@@ -2,7 +2,6 @@ package com.unity.mindgarden.diary
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
@@ -10,7 +9,6 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.unity.mindgarden.R
 import com.unity.mindgarden.main_feature.MainActivity
@@ -168,6 +166,10 @@ class DiaryMain : AppCompatActivity() {
                 etContentDiary.text.clear()
 
                 val intent = Intent(this@DiaryMain, DiaryDone::class.java)
+                intent.putExtra("label", label)
+                intent.putExtra("title", title)
+                intent.putExtra("content", content)
+                intent.putExtra("date", SimpleDateFormat("MM dd, yyyy", Locale.getDefault()).format(Date()))
                 startActivity(intent)
                 finish()
             }

@@ -44,4 +44,10 @@
     <string name="streak_placeholder">0</string>
     <string name="emo_icon_placeholder">emo placeholder</string>
     <string name="emo_stat_placeholder">0%</string>
+    <string name="anger_message">Kamu Sedang Murka Hari Ini!</string>
+    <string name="fear_message">Kamu Sedang Ketakutan Hari Ini!</string>
+    <string name="sadness_message">Kamu Sedang Sedih Hari Ini!</string>
+    <string name="joy_message">Kamu Sedang Bahagia Hari Ini!</string>
+    <string name="surprise_message">Kamu Sedang Terkejut Hari Ini!</string>
+    <string name="love_message">Kamu Sedang Dicintai Hari Ini!</string>
 </resources>
