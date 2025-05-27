@@ -83,20 +83,6 @@ class DiaryMain : AppCompatActivity() {
                                     "Prediksi gagal: ${response.code()}",
                                     Toast.LENGTH_SHORT
                                 ).show()
-
-                                // DUMMY DATA
-                                val prediction = PredictionResponse(
-                                    label = "sadness",
-                                    score = 30.0,
-                                    text = "test"
-                                )
-
-                                processData(
-                                    userId,
-                                    title,
-                                    content,
-                                    prediction
-                                )
                             }
                         }
 
