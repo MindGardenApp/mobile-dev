@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.unity.mindgarden.DailyHistory
 import com.unity.mindgarden.DailyHistoryAdapter
 import com.unity.mindgarden.R
@@ -57,6 +58,7 @@ class HistoryFragment : Fragment() {
         db.collection("users")
             .document(userId)
             .collection("journals")
+            .orderBy("dateTime", Query.Direction.DESCENDING)
             .get()
             .addOnSuccessListener { documents ->
                 journals.clear()
