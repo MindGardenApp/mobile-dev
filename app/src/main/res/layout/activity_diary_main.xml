@@ -74,13 +74,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="16dp">
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp">
 
             <EditText
                 android:id="@+id/editText_JudulDiary"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:hint="Berikan judul untuk hari ini..."
                 android:inputType="textMultiLine"
