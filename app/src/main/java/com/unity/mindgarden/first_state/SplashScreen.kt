@@ -20,17 +20,18 @@ class SplashScreen : AppCompatActivity() {
         val isOnboardingCompleted = sessionManager.isOnboardingCompleted()
 
         Handler(Looper.getMainLooper()).postDelayed({
-            if (isLoggedIn && isOnboardingCompleted) {
-                // Jika sudah login dan onboarding selesai
-                startActivity(Intent(this, MainActivity::class.java))
-            } else if (!isLoggedIn) {
-                // Jika belum login, ke login page
-                startActivity(Intent(this, Login::class.java))
-            } else {
+            if (!isOnboardingCompleted) {
                 // Jika onboarding belum selesai, ke onboarding1
                 startActivity(Intent(this, onboarding1::class.java))
+            } else if (isLoggedIn) {
+                // Jika sudah login dan onboarding selesai
+                startActivity(Intent(this, MainActivity::class.java))
+            } else {
+                // Jika onboarding selesai tapi belum login
+                startActivity(Intent(this, Login::class.java))
             }
             finish()
         }, 3000L)
     }
 }
+
