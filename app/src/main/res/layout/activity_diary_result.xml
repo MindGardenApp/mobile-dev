@@ -95,21 +95,17 @@
 
                 <TextView
                     android:id="@+id/tv_dairy_title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:layout_weight="1"
                     android:text="Memuat..."
                     android:textColor="@color/yellowish_950"
                     android:textSize="@dimen/heading_h3"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    />
 
-                <ImageButton
-                    android:id="@+id/btn_delete"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
-                    android:background="@drawable/shape_round"
-                    android:src="@drawable/ic_trash" />
+
 
             </LinearLayout>
 

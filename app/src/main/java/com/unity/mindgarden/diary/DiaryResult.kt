@@ -40,7 +40,6 @@ class DiaryResult : AppCompatActivity() {
         tvDiaryTitle = findViewById(R.id.tv_dairy_title)
         tvDiaryContent = findViewById(R.id.tv_diary_content)
 
-        btnDelete = findViewById(R.id.btn_delete)
         btnHome = findViewById(R.id.goHomeButton)
 
         // Retrieve data from intent
