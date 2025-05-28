@@ -24,7 +24,6 @@
         android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="4dp"
         android:adjustViewBounds="true"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,15 +61,16 @@
 
     <Button
         android:id="@+id/getStartedButton"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="51dp"
         android:layout_marginTop="72dp"
         android:backgroundTint="@color/green_primary"
+        android:layout_margin="16dp"
         android:text="Get Started"
         android:textColor="@color/white"
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tekssub"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="@color/green_primary"
         app:strokeWidth="1dp" />
