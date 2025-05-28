@@ -267,7 +267,7 @@ class HomeFragment : Fragment() {
                                     if (totalData == 0) {
                                         tvEmo1Value.text = "0%"
                                     } else {
-                                        val percentage = (value / totalData * 100).toString() + "%"
+                                        val percentage = (value / totalData.toDouble() * 100).toInt().toString() + "%"
                                         tvEmo1Value.text = percentage
                                     }
                                 }
@@ -285,10 +285,10 @@ class HomeFragment : Fragment() {
                                     progressBarEmo2.max = totalData
                                     progressBarEmo2.progress = value
                                     if (totalData == 0) {
-                                        tvEmo1Value.text = "0%"
+                                        tvEmo2Value.text = "0%"
                                     } else {
-                                        val percentage = (value / totalData * 100).toString() + "%"
-                                        tvEmo1Value.text = percentage
+                                        val percentage = (value / totalData.toDouble() * 100).toInt().toString() + "%"
+                                        tvEmo2Value.text = percentage
                                     }
                                 }
                                 3 -> {
@@ -305,10 +305,10 @@ class HomeFragment : Fragment() {
                                     progressBarEmo3.max = totalData
                                     progressBarEmo3.progress = value
                                     if (totalData == 0) {
-                                        tvEmo1Value.text = "0%"
+                                        tvEmo3Value.text = "0%"
                                     } else {
-                                        val percentage = (value / totalData * 100).toString() + "%"
-                                        tvEmo1Value.text = percentage
+                                        val percentage = (value / totalData.toDouble() * 100).toInt().toString() + "%"
+                                        tvEmo3Value.text = percentage
                                     }
                                 }
                             }
