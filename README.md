@@ -26,6 +26,12 @@
 
 ---
 
+## 📱 Application Display
+
+![Desain tanpa judul (1)](https://github.com/user-attachments/assets/cb4cd298-9621-4874-8951-13ee1d8db3ed)
+
+---
+
 ## 🔒 Privacy & Ethics
 
 - End-to-end encryption for all journal data.
