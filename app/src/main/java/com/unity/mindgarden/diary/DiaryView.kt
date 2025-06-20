@@ -1,5 +1,6 @@
 package com.unity.mindgarden.diary
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -42,7 +43,7 @@ class DiaryView : AppCompatActivity() {
         ivEmoticon = findViewById(R.id.iv_emoticon)
         btnBack = findViewById(R.id.btn_back)
         ivBackground = findViewById(R.id.iv_background)
-        btnDelete = findViewById(R.id.btn_delete)
+//        btnDelete = findViewById(R.id.btn_delete)
 
         btnBack.setOnClickListener {
             finish()
@@ -55,20 +56,20 @@ class DiaryView : AppCompatActivity() {
         val diaryDocumentId = intent.getStringExtra("documentId")
         val diaryUserId = intent.getStringExtra("userId")
 
-        btnDelete.setOnClickListener {
-            db.collection("users")
-                .document(diaryUserId!!)
-                .collection("journals")
-                .document(diaryDocumentId!!)
-                .delete()
-                .addOnSuccessListener {
-                    Toast.makeText(this, "Berhasil menghapus diary", Toast.LENGTH_SHORT).show()
-                    finish()
-                }
-                .addOnFailureListener {
-                    Toast.makeText(this, "Gagal menghapus diary", Toast.LENGTH_SHORT).show()
-                }
-        }
+//        btnDelete.setOnClickListener {
+//            db.collection("users")
+//                .document(diaryUserId!!)
+//                .collection("journals")
+//                .document(diaryDocumentId!!)
+//                .delete()
+//                .addOnSuccessListener {
+//                    Toast.makeText(this, "Berhasil menghapus diary", Toast.LENGTH_SHORT).show()
+//                    finish()
+//                }
+//                .addOnFailureListener {
+//                    Toast.makeText(this, "Gagal menghapus diary", Toast.LENGTH_SHORT).show()
+//                }
+//        }
 
         when (diaryLabel) {
             "joy" -> {
@@ -107,5 +108,12 @@ class DiaryView : AppCompatActivity() {
 
         tvDiaryTitle.text = diaryTitle
         tvDiaryContent.text = diaryContent
+
+        val btnToTulisan = findViewById<android.widget.Button>(R.id.btn_tulisanmu)
+        btnToTulisan.setOnClickListener {
+            val intent = Intent(this, DiaryViewTulisan::class.java)
+            startActivity(intent)
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+        }
     }
 }
