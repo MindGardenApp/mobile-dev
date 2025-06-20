@@ -20,7 +20,7 @@
     <ImageView
         android:id="@+id/iv_background"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="340dp"
         android:scaleType="centerCrop"
         android:src="@drawable/background_bottom_sad"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,12 +28,12 @@
 
     <ImageView
         android:id="@+id/iv_emoticon"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="16dp"
         android:src="@drawable/emoticon_sadness"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,7 +54,7 @@
         android:id="@+id/result_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="40dp"
         android:gravity="center"
         android:text="Kamu Sedang \nTerkejut Hari Ini!"
         android:textSize="25sp"
@@ -68,25 +68,23 @@
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:padding="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/result_title"
-        app:layout_constraintVertical_bias="0.19">
+        app:layout_constraintTop_toBottomOf="@id/result_title">
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="260dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/shape_rounded_outline_yellowish"
             android:gravity="center_horizontal"
             android:orientation="vertical"
             android:padding="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/iv_background">
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -98,38 +96,70 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    android:gravity="center"
                     android:text="Memuat..."
                     android:textColor="@color/yellowish_950"
                     android:textSize="@dimen/heading_h3"
-                    android:textStyle="bold"
-                    android:gravity="center"
-                    />
-
-
-
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_diary_content"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:text="Memuat..."
                 android:textColor="@color/yellowish_800"
                 android:textSize="@dimen/body" />
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/box_advice_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/shape_rounded_outline_yellowish"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraintLayout2">
+
+        <TextView
+            android:id="@+id/tv_advice_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Saran untuk kamu"
+            android:textColor="@color/yellowish_950"
+            android:textSize="@dimen/heading_h3"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_advice_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Sebelum bertindak, coba tarik napas dalam-dalam..."
+            android:textColor="@color/yellowish_800"
+            android:textSize="@dimen/body" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/goHomeButton"
         android:layout_width="360dp"
         android:layout_height="51dp"
+        android:layout_marginTop="116dp"
         android:backgroundTint="@color/green_dark"
         android:text="Home"
         android:textColor="@color/white"
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.484"
+        app:layout_constraintHorizontal_bias="0.49"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/constraintLayout2"
         app:strokeColor="@color/green_primary"
