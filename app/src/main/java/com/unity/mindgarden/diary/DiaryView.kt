@@ -2,29 +2,27 @@ package com.unity.mindgarden.diary
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.google.firebase.firestore.FirebaseFirestore
 import com.unity.mindgarden.R
+import com.unity.mindgarden.model.*
+import com.unity.mindgarden.network.RetrofitInstance
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class DiaryView : AppCompatActivity() {
 
-    private lateinit var tvResultTitle: TextView
     private lateinit var tvDiaryTitle: TextView
     private lateinit var tvDiaryContent: TextView
-    private lateinit var tvDate: TextView
-    private lateinit var ivEmoticon: ImageView
-    private lateinit var btnBack: ImageButton
-    private lateinit var ivBackground: ImageView
-    private lateinit var btnDelete: ImageButton
-
-    private val db = FirebaseFirestore.getInstance()
+    private lateinit var tvSaranTitle: TextView
+    private lateinit var tvSaranAI: TextView
+    private lateinit var btnToTulisan: Button
+    private lateinit var emoticon: ImageView
+    private lateinit var backButton: ImageButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,84 +34,82 @@ class DiaryView : AppCompatActivity() {
             insets
         }
 
-        tvResultTitle = findViewById(R.id.result_title)
+        // Hubungkan komponen XML
         tvDiaryTitle = findViewById(R.id.tv_dairy_title)
         tvDiaryContent = findViewById(R.id.tv_diary_content)
-        tvDate = findViewById(R.id.tv_date)
-        ivEmoticon = findViewById(R.id.iv_emoticon)
-        btnBack = findViewById(R.id.btn_back)
-        ivBackground = findViewById(R.id.iv_background)
-//        btnDelete = findViewById(R.id.btn_delete)
+        tvSaranTitle = findViewById(R.id.tv_saran_title)
+        tvSaranAI = findViewById(R.id.tv_saran_ai)
+        btnToTulisan = findViewById(R.id.btn_tulisanmu)
+        emoticon = findViewById(R.id.iv_emoticon)
+        backButton = findViewById(R.id.btn_back)
 
-        btnBack.setOnClickListener {
-            finish()
-        }
-
-        val diaryTitle = intent.getStringExtra("title")
-        val diaryContent = intent.getStringExtra("content")
-        val diaryDateTime = intent.getStringExtra("dateTime")
-        val diaryLabel = intent.getStringExtra("label")
-        val diaryDocumentId = intent.getStringExtra("documentId")
-        val diaryUserId = intent.getStringExtra("userId")
-
-//        btnDelete.setOnClickListener {
-//            db.collection("users")
-//                .document(diaryUserId!!)
-//                .collection("journals")
-//                .document(diaryDocumentId!!)
-//                .delete()
-//                .addOnSuccessListener {
-//                    Toast.makeText(this, "Berhasil menghapus diary", Toast.LENGTH_SHORT).show()
-//                    finish()
-//                }
-//                .addOnFailureListener {
-//                    Toast.makeText(this, "Gagal menghapus diary", Toast.LENGTH_SHORT).show()
-//                }
-//        }
-
-        when (diaryLabel) {
-            "joy" -> {
-                tvResultTitle.text = "Kamu Sedang\n Bahagia Hari Ini"
-                ivEmoticon.setImageResource(R.drawable.emoticon_joy)
-                ivBackground.setImageResource(R.drawable.bgbot_joy)
-            }
-            "sadness" -> {
-                tvResultTitle.text = "Kamu Sedang\n Sedih Hari Ini"
-                ivEmoticon.setImageResource(R.drawable.emoticon_sadness)
-                ivBackground.setImageResource(R.drawable.bgbot_sad)
-            }
-            "anger" -> {
-                tvResultTitle.text = "Kamu Sedang\n Murka Hari Ini"
-                ivEmoticon.setImageResource(R.drawable.emoticon_anger)
-                ivBackground.setImageResource(R.drawable.bgbot_angry)
-            }
-            "fear" -> {
-                tvResultTitle.text = "Kamu Sedang\n Ketakutan Hari Ini"
-                ivEmoticon.setImageResource(R.drawable.emoticon_fear)
-                ivBackground.setImageResource(R.drawable.bgbot_fear)
-            }
-            "surprise" -> {
-                tvResultTitle.text = "Kamu Sedang\n Terkejut Hari Ini"
-                ivEmoticon.setImageResource(R.drawable.emoticon_surprise)
-                ivBackground.setImageResource(R.drawable.bgbot_surprise)
-            }
-            "love" -> {
-                tvResultTitle.text = "Kamu Sedang\n Cinta Hari Ini"
-                ivEmoticon.setImageResource(R.drawable.emoticon_love)
-                ivBackground.setImageResource(R.drawable.bgbot_love)
-            }
-        }
-
-        tvDate.text = diaryDateTime
-
-        tvDiaryTitle.text = diaryTitle
-        tvDiaryContent.text = diaryContent
-
-        val btnToTulisan = findViewById<android.widget.Button>(R.id.btn_tulisanmu)
+        // Navigasi ke halaman tulisanmu
         btnToTulisan.setOnClickListener {
             val intent = Intent(this, DiaryViewTulisan::class.java)
             startActivity(intent)
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         }
+
+        // Tombol kembali
+        backButton.setOnClickListener {
+            finish()
+        }
+
+        // Ambil isi curhat dari intent
+        val isiCurhat = intent.getStringExtra("curhat_user")
+        if (!isiCurhat.isNullOrBlank()) {
+            kirimKePredict(isiCurhat)
+            kirimCurhatKeAI(isiCurhat)
+        } else {
+            tvDiaryTitle.text = "Tidak ada curhat dikirim."
+            tvDiaryContent.text = "-"
+            tvSaranTitle.text = ""
+            tvSaranAI.text = ""
+        }
+    }
+
+    private fun kirimKePredict(pesan: String) {
+        val request = ContentRequest(pesan)
+
+        RetrofitInstance.api.predictMood(request).enqueue(object : Callback<PredictionResponse> {
+            override fun onResponse(call: Call<PredictionResponse>, response: Response<PredictionResponse>) {
+                if (response.isSuccessful) {
+                    val hasil = response.body()?.label ?: "Emosi tidak dikenali"
+                    tvDiaryTitle.text = "Tentang emosimu:"
+                    tvDiaryContent.text = hasil
+                } else {
+                    tvDiaryTitle.text = "Gagal memuat emosi"
+                    tvDiaryContent.text = "Kode error: ${response.code()}"
+                }
+            }
+
+            override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
+                tvDiaryTitle.text = "Gagal memuat emosi"
+                tvDiaryContent.text = "Kesalahan: ${t.message}"
+            }
+        })
+    }
+
+
+    private fun kirimCurhatKeAI(message: String) {
+        val curhat = CurhatRequest(message)
+
+        RetrofitInstance.api.kirimCurhat(curhat).enqueue(object : Callback<CurhatResponse> {
+            override fun onResponse(call: Call<CurhatResponse>, response: Response<CurhatResponse>) {
+                if (response.isSuccessful) {
+                    val reply = response.body()?.reply ?: "Tidak ada balasan dari AI."
+                    tvSaranTitle.text = "Saran untuk kamu:"
+                    tvSaranAI.text = reply
+                } else {
+                    tvSaranTitle.text = "Gagal memuat saran"
+                    tvSaranAI.text = "Kode error: ${response.code()}"
+                }
+            }
+
+            override fun onFailure(call: Call<CurhatResponse>, t: Throwable) {
+                tvSaranTitle.text = "Gagal memuat saran"
+                tvSaranAI.text = "Kesalahan: ${t.message}"
+            }
+        })
     }
 }

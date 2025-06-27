@@ -13,6 +13,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.unity.mindgarden.R
 import com.unity.mindgarden.main_feature.MainActivity
 import com.unity.mindgarden.model.ContentRequest
+import com.unity.mindgarden.model.CurhatRequest
+import com.unity.mindgarden.model.CurhatResponse
 import com.unity.mindgarden.model.PredictionResponse
 import com.unity.mindgarden.network.RetrofitInstance
 import com.unity.mindgarden.utils.calculateStreak
@@ -59,43 +61,25 @@ class DiaryMain : AppCompatActivity() {
 
                 val request = ContentRequest(content)
 
-                // 🔄 Kirim ke Flask backend untuk prediksi
-                RetrofitInstance.api.predictMood(request)
-                    .enqueue(object : Callback<PredictionResponse> {
-                        override fun onResponse(
-                            call: Call<PredictionResponse>,
-                            response: Response<PredictionResponse>
-                        ) {
-                            if (response.isSuccessful) {
-                                val prediction = response.body()
-
-                                processData(
-                                    userId,
-                                    title,
-                                    content,
-                                    prediction
-                                )
-                            } else {
-                                Toast.makeText(
-                                    this@DiaryMain,
-                                    "Prediksi gagal: ${response.code()}",
-                                    Toast.LENGTH_SHORT
-                                ).show()
-                            }
+                RetrofitInstance.api.predictMood(request).enqueue(object : Callback<PredictionResponse> {
+                    override fun onResponse(call: Call<PredictionResponse>, response: Response<PredictionResponse>) {
+                        if (response.isSuccessful) {
+                            val prediction = response.body()
+                            processData(userId, title, content, prediction)
+                        } else {
+                            Toast.makeText(this@DiaryMain, "Prediksi gagal: ${response.code()}", Toast.LENGTH_SHORT).show()
                         }
+                    }
 
-                        override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
-                            Toast.makeText(
-                                this@DiaryMain,
-                                "Koneksi gagal: ${t.message}",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
-                    })
+                    override fun onFailure(call: Call<PredictionResponse>, t: Throwable) {
+                        Toast.makeText(this@DiaryMain, "Koneksi gagal: ${t.message}", Toast.LENGTH_SHORT).show()
+                    }
+                })
             } else {
                 Toast.makeText(this, "User belum login", Toast.LENGTH_SHORT).show()
             }
         }
+
         btnReset.setOnClickListener {
             etJudulDiary.text.clear()
             etContentDiary.text.clear()
@@ -118,74 +102,85 @@ class DiaryMain : AppCompatActivity() {
         finish()
     }
 
-    fun processData(
-        userId: String,
-        title: String,
-        content: String,
-        prediction: PredictionResponse?
-    ) {
+    private fun processData(userId: String, title: String, content: String, prediction: PredictionResponse?) {
         if (prediction == null) {
-            Toast.makeText(
-                this@DiaryMain,
-                "Prediksi tidak valid, silakan coba lagi",
-                Toast.LENGTH_SHORT
-            ).show()
+            Toast.makeText(this@DiaryMain, "Prediksi tidak valid, silakan coba lagi", Toast.LENGTH_SHORT).show()
             return
         }
 
         val label = prediction.label
         val score = prediction.score
+        val dateFormatted = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault()).format(Date())
 
-        // Update Score
-        scoreUpdate(
-            db,
-            userId,
-            prediction
-        )
+        scoreUpdate(db, userId, prediction)
 
-        // 🔄 Simpan ke Firestore setelah dapat label
-        val journalData = hashMapOf(
-            "title" to title,
-            "content" to content,
-            "dateTime" to Date(),
-            "label" to label,
-            "score" to score
-        )
+        val curhatRequest = CurhatRequest(content)
+        RetrofitInstance.api.kirimCurhat(curhatRequest).enqueue(object : Callback<CurhatResponse> {
+            override fun onResponse(call: Call<CurhatResponse>, response: Response<CurhatResponse>) {
+                val reply = response.body()?.reply ?: content // fallback ke content jika gagal
 
+                val journalData: HashMap<String, Any> = hashMapOf(
+                    "title" to title,
+                    "content" to content,
+                    "dateTime" to Date(),
+                    "label" to label,
+                    "score" to score,
+                    "reply" to reply
+                )
+
+                saveToFirestore(userId, journalData, label, title, content, dateFormatted, reply)
+            }
+
+            override fun onFailure(call: Call<CurhatResponse>, t: Throwable) {
+                val fallbackReply = content // fallback jika gagal memuat balasan AI
+
+                val journalData: HashMap<String, Any> = hashMapOf(
+                    "title" to title,
+                    "content" to content,
+                    "dateTime" to Date(),
+                    "label" to label,
+                    "score" to score,
+                    "reply" to fallbackReply
+                )
+
+                saveToFirestore(userId, journalData, label, title, content, dateFormatted, fallbackReply)
+            }
+
+        })
+
+        calculateStreak(db, userId, label)
+    }
+
+    private fun saveToFirestore(
+        userId: String,
+        journalData: HashMap<String, Any>,
+        label: String,
+        title: String,
+        content: String,
+        dateFormatted: String,
+        reply: String
+    ) {
         db.collection("users")
             .document(userId)
             .collection("journals")
             .add(journalData)
             .addOnSuccessListener {
-                Toast.makeText(
-                    this@DiaryMain,
-                    "Jurnal berhasil disimpan",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this@DiaryMain, "Jurnal berhasil disimpan", Toast.LENGTH_SHORT).show()
                 etJudulDiary.text.clear()
                 etContentDiary.text.clear()
 
-                val intent = Intent(this@DiaryMain, DiaryDone::class.java)
-                intent.putExtra("label", label)
-                intent.putExtra("title", title)
-                intent.putExtra("content", content)
-                intent.putExtra("date", SimpleDateFormat("MM dd, yyyy", Locale.getDefault()).format(Date()))
+                val intent = Intent(this@DiaryMain, DiaryResult::class.java).apply {
+                    putExtra("label", label)
+                    putExtra("title", title)
+                    putExtra("content", content)
+                    putExtra("date", dateFormatted)
+                    putExtra("reply", reply)
+                }
                 startActivity(intent)
                 finish()
             }
             .addOnFailureListener {
-                Toast.makeText(
-                    this@DiaryMain,
-                    "Gagal menyimpan jurnal: ${it.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this@DiaryMain, "Gagal menyimpan jurnal: ${it.message}", Toast.LENGTH_SHORT).show()
             }
-
-        // Update streak
-        calculateStreak(
-            db,
-            userId,
-            label
-        )
     }
 }
