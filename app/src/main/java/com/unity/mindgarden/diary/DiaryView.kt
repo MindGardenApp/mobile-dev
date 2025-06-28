@@ -1,6 +1,5 @@
 package com.unity.mindgarden.diary
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
@@ -12,15 +11,12 @@ import com.unity.mindgarden.R
 class DiaryView : AppCompatActivity() {
 
     private lateinit var tvResultTitle: TextView
-    private lateinit var tvDiaryTitle: TextView
-    private lateinit var tvDiaryContent: TextView
-    private lateinit var tvSaranTitle: TextView
-    private lateinit var tvSaranAi: TextView
     private lateinit var tvDate: TextView
-    private lateinit var btnToTulisan: Button
     private lateinit var ivEmoticon: ImageView
     private lateinit var ivBackground: ImageView
     private lateinit var backButton: ImageButton
+    private lateinit var btnToTulisan: Button
+    private lateinit var btnToGenerative: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,35 +28,64 @@ class DiaryView : AppCompatActivity() {
             insets
         }
 
+        val diaryTitle = intent.getStringExtra("title")
+        val diaryContent = intent.getStringExtra("content")
+        val diaryDateTime = intent.getStringExtra("dateTime")
+        val diaryLabel = intent.getStringExtra("label")
+        val diaryReply = intent.getStringExtra("reply")
+
+        val diaryViewGenerativeFragment = DiaryViewGenerativeFragment()
+        diaryViewGenerativeFragment.arguments = Bundle().apply {
+            putString("reply", diaryReply)
+        }
+
+        val diaryViewTextFragment = DiaryViewTextFragment()
+        diaryViewTextFragment.arguments = Bundle().apply {
+            putString("title", diaryTitle)
+            putString("content", diaryContent)
+        }
+
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.diary_result_container, diaryViewGenerativeFragment)
+            .commit()
+
         // Hubungkan komponen XML
         tvResultTitle = findViewById(R.id.result_title)
-        tvDiaryTitle = findViewById(R.id.tv_dairy_title)
-        tvDiaryContent = findViewById(R.id.tv_diary_content)
-        tvSaranTitle = findViewById(R.id.tv_saran_title)
-        tvSaranAi = findViewById(R.id.tv_saran_ai)
         tvDate = findViewById(R.id.tv_date)
-        btnToTulisan = findViewById(R.id.btn_tulisanmu)
         ivEmoticon = findViewById(R.id.iv_emoticon)
         ivBackground = findViewById(R.id.iv_background)
         backButton = findViewById(R.id.btn_back)
+        btnToTulisan = findViewById(R.id.btn_tulisanmu)
+        btnToGenerative = findViewById(R.id.btn_hasil)
 
         // Navigasi ke halaman tulisanmu
         btnToTulisan.setOnClickListener {
-            val intent = Intent(this, DiaryViewTulisan::class.java)
-            startActivity(intent)
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+            // Ganti fragment dengan DiaryViewTextFragment
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.diary_result_container, diaryViewTextFragment)
+                .commit()
+
+            // Ganti warna tombol
+            btnToTulisan.setBackgroundColor(getColor(R.color.accent_500))
+            btnToGenerative.setBackgroundColor(getColor(R.color.accent_300))
+        }
+
+        // Navigasi ke halaman hasil generative
+        btnToGenerative.setOnClickListener {
+            // Ganti fragment dengan DiaryViewGenerativeFragment
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.diary_result_container, diaryViewGenerativeFragment)
+                .commit()
+
+            // Ganti warna tombol
+            btnToTulisan.setBackgroundColor(getColor(R.color.accent_300))
+            btnToGenerative.setBackgroundColor(getColor(R.color.accent_500))
         }
 
         // Tombol kembali
         backButton.setOnClickListener {
             finish()
         }
-
-        val diaryTitle = intent.getStringExtra("title")
-        val diaryContent = intent.getStringExtra("content")
-        val diaryDateTime = intent.getStringExtra("dateTime")
-        val diaryLabel = intent.getStringExtra("label")
-        val diaryReply = intent.getStringExtra("reply")
 
         when (diaryLabel) {
             "joy" -> {
@@ -96,9 +121,5 @@ class DiaryView : AppCompatActivity() {
         }
 
         tvDate.text = diaryDateTime
-
-        tvDiaryTitle.text = diaryTitle
-        tvDiaryContent.text = diaryContent
-        tvSaranAi.text = diaryReply
     }
 }
