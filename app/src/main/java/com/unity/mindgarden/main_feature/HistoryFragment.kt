@@ -74,7 +74,8 @@ class HistoryFragment : Fragment() {
                         content = doc.get("content") as String,
                         dateTime = (doc.get("dateTime") as Timestamp).toDate(),
                         label = doc.get("label") as String,
-                        score = doc.get("score") as Double
+                        score = doc.get("score") as Double,
+                        reply = doc.get("reply") as String
                     )
                     journals.add(journal)
                 }

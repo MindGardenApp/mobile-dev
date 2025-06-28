@@ -70,6 +70,7 @@ class DailyHistoryAdapter(private val items: List<DailyHistory>) :
             intent.putExtra("score", items[position].score)
             intent.putExtra("documentId", items[position].documentId)
             intent.putExtra("userId", items[position].userId)
+            intent.putExtra("reply", items[position].reply)
 
             holder.singleItemHistory.context.startActivity(intent)
         }

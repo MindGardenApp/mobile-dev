@@ -10,4 +10,5 @@ data class DailyHistory(
     val dateTime: Date,
     val label: String,
     val score: Double,
+    val reply: String = ""
 )
