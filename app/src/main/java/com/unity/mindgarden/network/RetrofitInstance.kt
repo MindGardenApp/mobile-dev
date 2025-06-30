@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
-    private const val BASE_URL = "https://equal-foal-distinctly.ngrok-free.app/" // IP Flask, 10.0.2.2 untuk emulator Android
+    private const val BASE_URL = "https://mind-garden-backend.vercel.app/" // IP Flask, 10.0.2.2 untuk emulator Android
 
     val api: ApiService by lazy {
         Retrofit.Builder()
